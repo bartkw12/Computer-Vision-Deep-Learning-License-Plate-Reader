@@ -11,4 +11,9 @@ results = {}
 # object tracker used to track all the vehicles in the video
 mot_tracker = Sort()
 
+# load models
+coco_model = YOLO('./Pretrained COCO/yolo11n.pt')                      # Car detection model
+license_plate_detector = YOLO('./runs/detect/train3/weights/best.pt')  # License plate detection model
 
+# load video
+cap = cv2.VideoCapture(video)
