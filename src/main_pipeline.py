@@ -17,3 +17,6 @@ license_plate_detector = YOLO('./runs/detect/train3/weights/best.pt')  # License
 
 # load video
 cap = cv2.VideoCapture(video)
+
+# class id for car, motorbike, bus, and truck
+vehicles = [2, 3, 5, 7]
