@@ -20,3 +20,11 @@ cap = cv2.VideoCapture(video)
 
 # class id for car, motorbike, bus, and truck
 vehicles = [2, 3, 5, 7]
+
+# read frames
+frame_nmr = -1
+
+ret = True
+while ret:
+    frame_nmr += 1
+    ret, frame = cap.read()
