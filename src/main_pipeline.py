@@ -28,3 +28,6 @@ ret = True
 while ret:
     frame_nmr += 1
     ret, frame = cap.read()
+
+# add frame analysis into while loop
+# need to grayscale and crop frames to help model identify license plate
