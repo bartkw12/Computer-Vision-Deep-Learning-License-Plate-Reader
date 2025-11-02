@@ -31,3 +31,4 @@ while ret:
 
 # add frame analysis into while loop
 # need to grayscale and crop frames to help model identify license plate
+# maybe add interpolation for smoothing frames - interpolate data to assign plates to obstructed vehicles
