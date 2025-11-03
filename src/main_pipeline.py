@@ -28,7 +28,13 @@ ret = True
 while ret:
     frame_nmr += 1
     ret, frame = cap.read()
+    if ret:
+        results[frame_nmr] = {}
 
-# add frame analysis into while loop
-# need to grayscale and crop frames to help model identify license plate
-# maybe add interpolation for smoothing frames - interpolate data to assign plates to obstructed vehicles
+        # 1 detect vehicles
+
+        # 2 save all bounding boxes of vehicles we detect in video
+
+        # 3 track vehicles - object tracking
+
+        # 4 detect license plates
