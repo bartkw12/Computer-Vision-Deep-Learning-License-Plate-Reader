@@ -32,6 +32,7 @@ while ret:
         results[frame_nmr] = {}
 
         # 1 detect vehicles
+        detections = coco_model(frame)[0]
 
         # 2 save all bounding boxes of vehicles we detect in video
 
