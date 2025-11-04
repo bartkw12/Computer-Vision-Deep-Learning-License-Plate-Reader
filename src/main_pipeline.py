@@ -35,6 +35,9 @@ while ret:
         detections = coco_model(frame)[0]
 
         # 2 save all bounding boxes of vehicles we detect in video
+        detections_ = []
+        for detection in detections.boxes.data.tolist():
+            x1, y1, x2, y2, score, class_id = detection
 
         # 3 track vehicles - object tracking
 
