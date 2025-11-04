@@ -38,6 +38,8 @@ while ret:
         detections_ = []
         for detection in detections.boxes.data.tolist():
             x1, y1, x2, y2, score, class_id = detection
+            if int(class_id) in vehicles:
+                detections_.append([x1, y1, x2, y2, score])
 
         # 3 track vehicles - object tracking
 
