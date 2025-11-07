@@ -45,3 +45,7 @@ while ret:
         track_ids = mot_tracker.update(np.asarray(detections_))  # all BB of all vehicles detected w tracking info
 
         # 4 detect license plates
+        license_plates = license_plate_detector(frame)[0]
+        for license_plate in license_plates.boxes.data.tolist():
+            x1, y1, x2, y2, score, class_id = license_plate
+
