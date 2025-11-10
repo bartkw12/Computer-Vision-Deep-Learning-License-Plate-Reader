@@ -53,3 +53,8 @@ while ret:
             # call get car function from util.py to return the car belonging to license plate
             xcar1, ycar1, xcar2, ycar2, car_id = get_car(license_plate, track_ids)
 
+            # crop license plate
+            license_plate_crop = frame[int(y1):int(y2), int(x1):int(x2), :]
+
+
+
