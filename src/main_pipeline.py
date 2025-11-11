@@ -59,5 +59,8 @@ while ret:
             # process license plate - apply grayscale conversion
             license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
 
+            # process license plate - apply grayscale conversion and threshold
+            license_plate_crop_gray = cv2.cvtColor(license_plate_crop, cv2.COLOR_BGR2GRAY)
+
 
 
