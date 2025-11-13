@@ -68,5 +68,8 @@ while ret:
                 cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU  # Use adaptive thresholding
             )
 
+            #cv2.imwrite(f'outputs/crop_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop)
+            #cv2.imwrite(f'outputs/thresh_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop_thresh)
+
 
 
