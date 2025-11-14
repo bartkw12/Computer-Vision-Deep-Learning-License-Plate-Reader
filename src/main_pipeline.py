@@ -71,5 +71,9 @@ while ret:
             #cv2.imwrite(f'outputs/crop_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop)
             #cv2.imwrite(f'outputs/thresh_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop_thresh)
 
+            # read license plate number
+            license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
+            print(f"Detected license plate text: {license_plate_text}")
+
 
 
