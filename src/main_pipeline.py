@@ -75,5 +75,13 @@ while ret:
             license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
             print(f"Detected license plate text: {license_plate_text}")
 
+             if license_plate_text is not None:
+                # license plate will be on a car and car will be on a given frame
+                results[frame_nmr][car_id] = {'car': {'bbox': [xcar1, ycar1, xcar2, ycar2]}, 
+                                              'license_plate': {'bbox': [x1, y1, x2, y2],
+                                                                'text': license_plate_text,
+                                                                'bbox_score': score,
+                                                                'text_score': license_plate_text_score}}
 
+            
 
