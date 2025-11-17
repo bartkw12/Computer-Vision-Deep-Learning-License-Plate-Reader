@@ -68,8 +68,15 @@ while ret:
                 cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU  # Use adaptive thresholding
             )
 
-            #cv2.imwrite(f'outputs/crop_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop)
-            #cv2.imwrite(f'outputs/thresh_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop_thresh)
+            '''
+            cv2.imwrite(f'outputs/crop_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop)
+            cv2.imwrite(f'outputs/thresh_frame{frame_nmr}_car{car_id}.jpg', license_plate_crop_thresh)
+
+            plt.imshow(cv2.cvtColor(license_plate_crop_thresh, cv2.COLOR_BGR2RGB))
+            plt.title("Threshold Crop")
+            plt.axis('off')
+            plt.show()
+            '''
 
             # read license plate number
             license_plate_text, license_plate_text_score = read_license_plate(license_plate_crop_thresh)
