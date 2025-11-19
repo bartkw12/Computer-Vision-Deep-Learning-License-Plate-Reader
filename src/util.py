@@ -13,6 +13,13 @@ dict_char_to_int = {'O': '0',
                     'G': '6',
                     'S': '5'}
 
+dict_int_to_char = {'0': 'O',
+                    '1': 'I',
+                    '3': 'J',
+                    '4': 'A',
+                    '6': 'G',
+                    '5': 'S'}
+
 def write_csv(results, output_path):
     """
     Write the results to a CSV file.
