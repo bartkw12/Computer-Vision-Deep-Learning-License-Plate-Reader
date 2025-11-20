@@ -28,6 +28,9 @@ def write_csv(results, output_path):
         results (dict): Dictionary containing the results.
         output_path (str): Path to the output CSV file.
     """
-    pass
+    with open(output_path, 'w') as f:
+        f.write('{},{},{},{},{},{},{}\n'.format('frame_nmr', 'car_id', 'car_bbox',
+                                                'license_plate_bbox', 'license_plate_bbox_score', 'license_number',
+                                                'license_number_score'))
 
 
