@@ -33,4 +33,12 @@ def write_csv(results, output_path):
                                                 'license_plate_bbox', 'license_plate_bbox_score', 'license_number',
                                                 'license_number_score'))
 
+        for frame_nmr in results.keys():
+                  for car_id in results[frame_nmr].keys():
+                      print(results[frame_nmr][car_id])
 
+
+# ----------------------------------------------------------------------------------------------------------------------
+# NEED TO DO THIS FOR ONTARIO LICENSE PLATES !!!
+# ----------------------------------------------------------------------------------------------------------------------
+# check out rules and laws about for ON license plates
