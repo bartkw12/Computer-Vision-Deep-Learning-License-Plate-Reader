@@ -62,3 +62,19 @@ def write_csv(results, output_path):
 # NEED TO DO THIS FOR ONTARIO LICENSE PLATES !!!
 # ----------------------------------------------------------------------------------------------------------------------
 # check out rules and laws about for ON license plates
+def license_complies_format(text):
+    """
+    Check if the license plate text complies with the required format.
+
+    TODO: change for Ontario license plate format
+
+    Args:
+        text (str): License plate text.
+
+    Returns:
+        bool: True if the license plate complies with the format, False otherwise.
+    """
+
+    # Match patterns like ABCD123 or ABC-123 (with optional non-alphanumeric chars)
+    pattern = r'^[A-Za-z]{4}[\s-]?[\d]{3}$'
+    return re.match(pattern, text) is not None
