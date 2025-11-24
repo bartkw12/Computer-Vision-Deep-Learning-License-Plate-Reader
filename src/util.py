@@ -78,3 +78,21 @@ def license_complies_format(text):
     # Match patterns like ABCD123 or ABC-123 (with optional non-alphanumeric chars)
     pattern = r'^[A-Za-z]{4}[\s-]?[\d]{3}$'
     return re.match(pattern, text) is not None
+
+def format_license(text):
+    """
+    Format the license plate text by converting characters using the mapping dictionaries.
+
+    Sometimes OCR has problems distinguishing characters/numbers.
+
+    TODO: This function will fix the characters, this needs to be changed for Ontario license plates.
+
+    Args:
+        text (str): License plate text.
+
+    Returns:
+        str: Formatted license plate text.
+    """
+    pass
+
+# also need a get car function
