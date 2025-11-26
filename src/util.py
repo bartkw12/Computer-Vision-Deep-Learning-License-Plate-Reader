@@ -104,4 +104,14 @@ def format_license(text):
 
     return license_plate_
 
-# also need a get car function
+def read_license_plate(license_plate_crop):
+    """
+    Read the license plate text from the given cropped image.
+
+    Args:
+        license_plate_crop (PIL.Image.Image): Cropped image containing the license plate.
+
+    Returns:
+        tuple: Tuple containing the formatted license plate text and its confidence score.
+    """
+  pass
