@@ -114,4 +114,15 @@ def read_license_plate(license_plate_crop):
     Returns:
         tuple: Tuple containing the formatted license plate text and its confidence score.
     """
-  pass
+    detections = reader.readtext(license_plate_crop)
+    for detection in detections:
+        bbox, text, score = detection
+        text = text.upper().replace(' ', '').replace('-', '')  # Remove spaces/dashes
+
+        # Use regex to extract the valid plate pattern (e.g., ABCD123)
+        match = re.search(r'([A-Z]{4}\d{3})', text)
+        if match:
+            valid_text = match.group(1)
+            if license_complies_format(valid_text):
+                return format_license(valid_text), score
+    return None, None
