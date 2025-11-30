@@ -20,6 +20,7 @@ dict_int_to_char = {'0': 'O',
                     '6': 'G',
                     '5': 'S'}
 
+
 def write_csv(results, output_path):
     """
     Write the results to a CSV file.
@@ -57,11 +58,9 @@ def write_csv(results, output_path):
                             )
         f.close()
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 # NEED TO DO THIS FOR ONTARIO LICENSE PLATES !!!
 # ----------------------------------------------------------------------------------------------------------------------
-# check out rules and laws about for ON license plates
 def license_complies_format(text):
     """
     Check if the license plate text complies with the required format.
@@ -104,6 +103,7 @@ def format_license(text):
 
     return license_plate_
 
+
 def read_license_plate(license_plate_crop):
     """
     Read the license plate text from the given cropped image.
@@ -114,6 +114,7 @@ def read_license_plate(license_plate_crop):
     Returns:
         tuple: Tuple containing the formatted license plate text and its confidence score.
     """
+
     detections = reader.readtext(license_plate_crop)
     for detection in detections:
         bbox, text, score = detection
@@ -126,6 +127,7 @@ def read_license_plate(license_plate_crop):
             if license_complies_format(valid_text):
                 return format_license(valid_text), score
     return None, None
+
 
 def get_car(license_plate, vehicle_track_ids):
     """
@@ -154,3 +156,4 @@ def get_car(license_plate, vehicle_track_ids):
         return vehicle_track_ids[car_indx]
 
     return -1, -1, -1, -1, -1
+
