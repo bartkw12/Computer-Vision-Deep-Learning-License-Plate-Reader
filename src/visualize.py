@@ -27,7 +27,10 @@ def draw_border(img, top_left, bottom_right, color=(0, 171, 255), thickness=3, l
 
 results = pd.read_csv(output_csv_interpolated)
 
-# need to input video
+# Video Input/Output Setup
+video_path = video
+cap = cv2.VideoCapture(video_path)
+
 
 
 
