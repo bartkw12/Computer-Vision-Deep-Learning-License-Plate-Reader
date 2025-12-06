@@ -31,6 +31,11 @@ results = pd.read_csv(output_csv_interpolated)
 video_path = video
 cap = cv2.VideoCapture(video_path)
 
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Specify the codec
+fps = cap.get(cv2.CAP_PROP_FPS)
+width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+out = cv2.VideoWriter(output_video, fourcc, fps, (width, height))
 
 
 
