@@ -37,7 +37,17 @@ width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 out = cv2.VideoWriter(output_video, fourcc, fps, (width, height))
 
-# add bright bounding boxes that contrast w cars/env to video
+# Extract best license plate crops per car
+license_plate = {}
+for car_id in np.unique(results['car_id']):
+    max_ = np.amax(results[results['car_id'] == car_id]['license_number_score'])
+    license_plate[car_id] = {'license_crop': None,
+                             'license_plate_number': results[(results['car_id'] == car_id) &
+                                                             (results['license_number_score'] == max_)]['license_number'].iloc[0]}
+    cap.set(cv2.CAP_PROP_POS_FRAMES, results[(results['car_id'] == car_id) &
+                                             (results['license_number_score'] == max_)]['frame_nmr'].iloc[0])
+    ret, frame = cap.read()
+
 
 
 
