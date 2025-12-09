@@ -47,6 +47,11 @@ for car_id in np.unique(results['car_id']):
     cap.set(cv2.CAP_PROP_POS_FRAMES, results[(results['car_id'] == car_id) &
                                              (results['license_number_score'] == max_)]['frame_nmr'].iloc[0])
     ret, frame = cap.read()
+    
+    #  Crop and resize the license plate
+    x1, y1, x2, y2 = ast.literal_eval(results[(results['car_id'] == car_id) &
+                                              (results['license_number_score'] == max_)]['license_plate_bbox'].iloc[0].replace('[ ', '[').replace('   ', ' ').replace('  ', ' ').replace(' ', ','))
+
 
 
 
