@@ -51,6 +51,10 @@ for car_id in np.unique(results['car_id']):
     #  Crop and resize the license plate
     x1, y1, x2, y2 = ast.literal_eval(results[(results['car_id'] == car_id) &
                                               (results['license_number_score'] == max_)]['license_plate_bbox'].iloc[0].replace('[ ', '[').replace('   ', ' ').replace('  ', ' ').replace(' ', ','))
+    
+    license_crop = frame[int(y1):int(y2), int(x1):int(x2), :]
+    license_crop = cv2.resize(license_crop, (int((x2 - x1) * 200 / (y2 - y1)), 200))
+
 
 
 
