@@ -54,6 +54,10 @@ for car_id in np.unique(results['car_id']):
     
     license_crop = frame[int(y1):int(y2), int(x1):int(x2), :]
     license_crop = cv2.resize(license_crop, (int((x2 - x1) * 200 / (y2 - y1)), 200))
+    
+    license_plate[car_id]['license_crop'] = license_crop
+    
+# Main loop over video frames
 
 
 
