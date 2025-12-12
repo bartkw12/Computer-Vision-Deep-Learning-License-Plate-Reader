@@ -58,6 +58,12 @@ for car_id in np.unique(results['car_id']):
     license_plate[car_id]['license_crop'] = license_crop
     
 # Main loop over video frames
+frame_nmr = -1
+cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+
+# read frames
+ret = True
+
 
 
 
