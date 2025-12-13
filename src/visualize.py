@@ -63,6 +63,14 @@ cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
 
 # read frames
 ret = True
+while ret:
+    ret, frame = cap.read()
+    frame_nmr += 1
+    if ret:
+        df_ = results[results['frame_nmr'] == frame_nmr]
+        for row_indx in range(len(df_)):
+
+
 
 
 
