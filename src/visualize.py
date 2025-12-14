@@ -69,6 +69,13 @@ while ret:
     if ret:
         df_ = results[results['frame_nmr'] == frame_nmr]
         for row_indx in range(len(df_)):
+            # draw car
+            car_x1, car_y1, car_x2, car_y2 = ast.literal_eval(df_.iloc[row_indx]['car_bbox'].replace('[ ', '[').replace('   ', ' ').replace('  ', ' ').replace(' ', ','))
+
+            # Draw border around car
+            draw_border(frame, (int(car_x1), int(car_y1)), (int(car_x2), int(car_y2)), (0, 171, 255), 10,
+                        line_length_x=50, line_length_y=50)
+
 
 
 
