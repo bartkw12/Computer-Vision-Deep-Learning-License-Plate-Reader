@@ -80,6 +80,12 @@ while ret:
             x1, y1, x2, y2 = ast.literal_eval(df_.iloc[row_indx]['license_plate_bbox'].replace('[ ', '[').replace('   ', ' ').replace('  ', ' ').replace(' ', ','))
             cv2.rectangle(frame, (int(x1), int(y1)), (int(x2), int(y2)), (0, 0, 255), 5)
 
+            # crop license plate
+            license_crop = license_plate[df_.iloc[row_indx]['car_id']]['license_crop']
+
+            H, W, _ = license_crop.shape
+
+
 
 
 
