@@ -84,6 +84,12 @@ while ret:
             license_crop = license_plate[df_.iloc[row_indx]['car_id']]['license_crop']
 
             H, W, _ = license_crop.shape
+            
+            # Overlay cropped license plate and number
+            try:
+                frame[int(car_y1) - H - 100:int(car_y1) - 100,
+                      int((car_x2 + car_x1 - W) / 2):int((car_x2 + car_x1 + W) / 2), :] = license_crop
+
 
 
 
