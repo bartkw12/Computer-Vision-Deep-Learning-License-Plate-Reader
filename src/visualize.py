@@ -89,6 +89,16 @@ while ret:
             try:
                 frame[int(car_y1) - H - 100:int(car_y1) - 100,
                       int((car_x2 + car_x1 - W) / 2):int((car_x2 + car_x1 + W) / 2), :] = license_crop
+                
+                frame[int(car_y1) - H - 200:int(car_y1) - H - 100,
+                      int((car_x2 + car_x1 - W) / 2):int((car_x2 + car_x1 + W) / 2), :] = (255, 255, 255)
+
+                (text_width, text_height), _ = cv2.getTextSize(
+                    license_plate[df_.iloc[row_indx]['car_id']]['license_plate_number'],
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    2,
+                    10)
+
 
 
 
