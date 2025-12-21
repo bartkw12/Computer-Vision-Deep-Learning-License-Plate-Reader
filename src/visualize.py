@@ -84,12 +84,12 @@ while ret:
             license_crop = license_plate[df_.iloc[row_indx]['car_id']]['license_crop']
 
             H, W, _ = license_crop.shape
-            
+
             # Overlay cropped license plate and number
             try:
                 frame[int(car_y1) - H - 100:int(car_y1) - 100,
                       int((car_x2 + car_x1 - W) / 2):int((car_x2 + car_x1 + W) / 2), :] = license_crop
-                
+
                 frame[int(car_y1) - H - 200:int(car_y1) - H - 100,
                       int((car_x2 + car_x1 - W) / 2):int((car_x2 + car_x1 + W) / 2), :] = (255, 255, 255)
 
@@ -98,16 +98,27 @@ while ret:
                     cv2.FONT_HERSHEY_SIMPLEX,
                     2,
                     10)
-                    cv2.putText(frame,
-                                license_plate[df_.iloc[row_indx]['car_id']]['license_plate_number'],
-                                # adjust this line to move read license plate number
-                                (int((car_x2 + car_x1 - text_width) / 2), int(car_y1 - H - 150 + (text_height / 2))),
-                                cv2.FONT_HERSHEY_SIMPLEX,
-                                2.0,  # Scale down text size
-                                (0, 0, 0),
-                                10)
 
+                cv2.putText(frame,
+                            license_plate[df_.iloc[row_indx]['car_id']]['license_plate_number'],
+                            # adjust this line to move read license plate number
+                            (int((car_x2 + car_x1 - text_width) / 2), int(car_y1 - H - 150 + (text_height / 2))),
+                            cv2.FONT_HERSHEY_SIMPLEX,
+                            2.0,  # Scale down text size
+                            (0, 0, 0),
+                            10)
 
+            except:
+                pass
+
+        out.write(frame)
+        frame = cv2.resize(frame, (1920, 1080))
+
+        # cv2.imshow('frame', frame)
+        # cv2.waitKey(0)
+
+out.release()
+cap.release()
 
 
 
