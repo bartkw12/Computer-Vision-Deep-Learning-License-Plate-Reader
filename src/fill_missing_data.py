@@ -21,7 +21,10 @@ def interpolate_bounding_boxes(data):
         # Filter data for a specific car ID
         car_mask = car_ids == car_id
         car_frame_numbers = frame_numbers[car_mask]
+        car_bboxes_interpolated = []
+        license_plate_bboxes_interpolated = []
     
+
 
 
 
