@@ -29,9 +29,11 @@ def interpolate_bounding_boxes(data):
         
         for i in range(len(car_bboxes[car_mask])):
             frame_number = car_frame_numbers[i]
+            car_bbox = car_bboxes[car_mask][i]
 
 
     
+
 
 
 
