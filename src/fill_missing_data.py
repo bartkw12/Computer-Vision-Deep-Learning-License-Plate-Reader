@@ -34,9 +34,12 @@ def interpolate_bounding_boxes(data):
             
             if i > 0:
                 prev_frame_number = car_frame_numbers[i-1]
+                prev_car_bbox = car_bboxes_interpolated[-1]
+                prev_license_plate_bbox = license_plate_bboxes_interpolated[-1]
 
 
     
+
 
 
 
