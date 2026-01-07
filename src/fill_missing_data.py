@@ -39,10 +39,11 @@ def interpolate_bounding_boxes(data):
                 
                 if frame_number - prev_frame_number > 1:
                     # Interpolate missing frames' bounding boxes
-                    pass
+                    frames_gap = frame_number - prev_frame_number
 
 
     
+
 
 
 
