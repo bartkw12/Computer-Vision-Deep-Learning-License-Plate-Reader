@@ -42,9 +42,12 @@ def interpolate_bounding_boxes(data):
                     frames_gap = frame_number - prev_frame_number
                     x = np.array([prev_frame_number, frame_number])
                     x_new = np.linspace(prev_frame_number, frame_number, num=frames_gap, endpoint=False)
+                    interp_func = interp1d(x, np.vstack((prev_car_bbox, car_bbox)), axis=0, kind='linear')
+                    interpolated_car_bboxes = interp_func(x_new)
 
 
     
+
 
 
 
