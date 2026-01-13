@@ -48,8 +48,10 @@ def interpolate_bounding_boxes(data):
                     car_bboxes_interpolated.extend(interpolated_car_bboxes[1:])
                     license_plate_bboxes_interpolated.extend(interpolated_license_plate_bboxes[1:])
 
+            car_bboxes_interpolated.append(car_bbox)
 
     
+
 
 
 
