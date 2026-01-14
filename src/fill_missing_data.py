@@ -50,7 +50,9 @@ def interpolate_bounding_boxes(data):
 
             car_bboxes_interpolated.append(car_bbox)
 
-    
+        for i in range(len(car_bboxes_interpolated)):
+            frame_number = first_frame_number + i
+
 
 
 
