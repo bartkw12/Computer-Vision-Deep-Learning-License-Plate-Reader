@@ -52,6 +52,9 @@ def interpolate_bounding_boxes(data):
 
         for i in range(len(car_bboxes_interpolated)):
             frame_number = first_frame_number + i
+            row = {}
+            row['frame_nmr'] = str(frame_number)
+
 
 
 
