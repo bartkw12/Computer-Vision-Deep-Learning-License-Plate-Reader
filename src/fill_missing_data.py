@@ -54,6 +54,9 @@ def interpolate_bounding_boxes(data):
             frame_number = first_frame_number + i
             row = {}
             row['frame_nmr'] = str(frame_number)
+            row['car_id'] = str(car_id)
+            row['car_bbox'] = ' '.join(map(str, car_bboxes_interpolated[i]))
+
 
 
 
