@@ -59,7 +59,8 @@ def interpolate_bounding_boxes(data):
 
             if str(frame_number) not in frame_numbers_:
                 # Imputed row, set the following fields to '0'
-                pass
+                row['license_plate_bbox_score'] = '0'
+
 
 
 
