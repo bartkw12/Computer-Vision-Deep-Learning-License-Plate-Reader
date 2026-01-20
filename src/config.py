@@ -6,3 +6,6 @@ output_csv_interpolated = 'ECE736_final2_output_interpolated.csv'
 
 # visualize
 output_video = './ECE736_final2_output.mp4'
+
+# add more adjustable knobs
+# set hyperparameters here
