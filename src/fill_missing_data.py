@@ -61,8 +61,10 @@ def interpolate_bounding_boxes(data):
                 # Imputed row, set the following fields to '0'
                 row['license_plate_bbox_score'] = '0'
                 row['license_number'] = '0'
+                row['license_number_score'] = '0'
 
 # need else statement to retrieve values from og row if available
+
 
 
 
