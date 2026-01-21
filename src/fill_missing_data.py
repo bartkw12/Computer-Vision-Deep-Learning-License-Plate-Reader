@@ -60,6 +60,10 @@ def interpolate_bounding_boxes(data):
             if str(frame_number) not in frame_numbers_:
                 # Imputed row, set the following fields to '0'
                 row['license_plate_bbox_score'] = '0'
+                row['license_number'] = '0'
+
+# need else statement to retrieve values from og row if available
+
 
 
 
