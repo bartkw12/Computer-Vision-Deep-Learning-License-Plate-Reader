@@ -62,8 +62,11 @@ def interpolate_bounding_boxes(data):
                 row['license_plate_bbox_score'] = '0'
                 row['license_number'] = '0'
                 row['license_number_score'] = '0'
+            else:
+                # Original row, retrieve values from the input data if available
+                original_row = [p for p in data if int(p['frame_nmr']) == frame_number and int(float(p['car_id'])) == int(float(car_id))][0]
 
-# need else statement to retrieve values from og row if available
+
 
 
 
