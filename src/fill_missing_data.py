@@ -69,8 +69,12 @@ def interpolate_bounding_boxes(data):
                 row['license_number'] = original_row['license_number'] if 'license_number' in original_row else '0'
                 row['license_number_score'] = original_row['license_number_score'] if 'license_number_score' in original_row else '0'
 
+        interpolated_data.append(row)
+
+    return interpolated_data
 
                 
+
 
 
 
