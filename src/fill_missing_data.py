@@ -73,7 +73,13 @@ def interpolate_bounding_boxes(data):
 
     return interpolated_data
 
+# Load the CSV file
+# Interpolate missing data
+# Write updated data to a new CSV file
+
+
                 
+
 
 
 
