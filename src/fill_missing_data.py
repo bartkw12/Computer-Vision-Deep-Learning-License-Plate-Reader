@@ -74,11 +74,15 @@ def interpolate_bounding_boxes(data):
     return interpolated_data
 
 # Load the CSV file
+with open(output_csv, 'r') as file:
+    reader = csv.DictReader(file)
+    data = list(reader)
 # Interpolate missing data
 # Write updated data to a new CSV file
 
 
                 
+
 
 
 
