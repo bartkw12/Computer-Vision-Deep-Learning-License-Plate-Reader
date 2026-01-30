@@ -81,9 +81,11 @@ with open(output_csv, 'r') as file:
 # Interpolate missing data
 interpolated_data = interpolate_bounding_boxes(data)
 # Write updated data to a new CSV file
+header = ['frame_nmr', 'car_id', 'car_bbox', 'license_plate_bbox', 'license_plate_bbox_score', 'license_number', 'license_number_score']
 
 
                 
+
 
 
 
