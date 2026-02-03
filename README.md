@@ -5,3 +5,21 @@ stages of computer vision processing, such as vehicle detection, license plate l
 being done in a modular and fully automated pipeline via Python. By combining cutting-edge tools such as YOLOv11 for object detection, SORT for 
 vehicle tracking, and EasyOCR for text recognition, the project aims to simulate a real-world license plate reader capable of working with video 
 footage from busy roads or surveillance cameras.
+
+#### Table of Contents
+
+- [Important Links](#Important-Links)
+- [Model Summary](#Model-Summary)
+- [Results](#Results)
+- [References](#References)
+- [Installation & Setup](#Installation--Setup)
+
+### Important Links
+
+### Model Summary
+
+### Results
+
+### References   
+
+### Installation & Setup
