@@ -6,6 +6,11 @@ being done in a modular and fully automated pipeline via Python. By combining cu
 vehicle tracking, and EasyOCR for text recognition, the project aims to simulate a real-world license plate reader capable of working with video 
 footage from busy roads or surveillance cameras.
 
+The license plate reader project will implement many topics from 3D Image
+Processing and Computer Vision, particularly the transition from traditional computer
+vision methods like edge detection and feature matching to modern deep learning
+approaches. 
+
 #### Table of Contents
 
 - [Important Links](#Important-Links)
