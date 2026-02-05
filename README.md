@@ -11,6 +11,12 @@ Processing and Computer Vision, particularly the transition from traditional com
 vision methods like edge detection and feature matching to modern deep learning
 approaches. 
 
+Concepts such as feature extraction using convolutional neural networks
+(CNNs), bounding box regression, object classification, and Kalman filtering for motion
+tracking were all explored in lectures and applied practically in this implementation. The
+integration of these components illustrates how real-world systems are built using layered
+vision models and machine learning inference techniques.
+
 #### Table of Contents
 
 - [Important Links](#Important-Links)
