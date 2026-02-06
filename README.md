@@ -41,6 +41,9 @@ number of epochs specified. The key hyperparameters used to train the model are 
 | Batch Size        |   16     | 
 | Learning Rate     |  0.01    | 
 | Momentum          |  0.9     | 
+| Weight Decay      |  0.0005  |
+| Parameters        |  2.6M    |
+
 
 
 
