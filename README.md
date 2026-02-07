@@ -44,7 +44,9 @@ number of epochs specified. The key hyperparameters used to train the model are 
 | Weight Decay      |  0.0005  |
 | Parameters        |  2.6M    |
 
-
+After training this pipeline, I was very impressed and satisfied with the results. A very high
+precision and recall would mean a high confidence score for each license plate, and an
+easier job for the rest of the pipeline
 
 
 ### References   
