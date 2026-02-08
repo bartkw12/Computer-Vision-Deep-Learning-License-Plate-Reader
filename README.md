@@ -46,7 +46,11 @@ number of epochs specified. The key hyperparameters used to train the model are 
 
 After training this pipeline, I was very impressed and satisfied with the results. A very high
 precision and recall would mean a high confidence score for each license plate, and an
-easier job for the rest of the pipeline
+easier job for the rest of the pipeline.
+
+This model was just trained on license plates and not on cars. A second pre-trained model
+for the COCO dataset from Ultralytics was used to detect vehicles. This model was
+pretrained to detect different types of vehicles.
 
 
 ### References   
