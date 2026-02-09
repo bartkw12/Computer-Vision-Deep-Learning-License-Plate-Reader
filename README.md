@@ -35,7 +35,7 @@ vision models and machine learning inference techniques.
 
 Training the YOLO model took around 2 hours, due to the large size of the dataset and the
 number of epochs specified. The key hyperparameters used to train the model are shown:
-| Hyperparamter     | Setting | 
+| Hyperparameter     | Setting | 
 | :---------------- | :------: |
 | Number of Epochs  |   100    | 
 | Batch Size        |   16     | 
@@ -43,6 +43,11 @@ number of epochs specified. The key hyperparameters used to train the model are 
 | Momentum          |  0.9     | 
 | Weight Decay      |  0.0005  |
 | Parameters        |  2.6M    |
+
+Results of the training process given by YOLO:
+| Metric      | Value | Interpretation | 
+| :---------------- | :------: | :------: |
+| Precision | 0.975 | 97.5% of predicted plates are correct |
 
 After training this pipeline, I was very impressed and satisfied with the results. A very high
 precision and recall would mean a high confidence score for each license plate, and an
