@@ -48,6 +48,9 @@ Results of the training process given by YOLO:
 | Metric      | Value | Interpretation | 
 | :---------------- | :------: | :------: |
 | Precision | 0.975 | 97.5% of predicted plates are correct |
+| Recall | 0.972 | 97.2% of actual plates were correctly detected |
+| mAP50 | 0.985 | Detection accuracy (IoU0.5) |
+| mAP50-95 | 0.715 | Performance over stricter thresholds |
 
 After training this pipeline, I was very impressed and satisfied with the results. A very high
 precision and recall would mean a high confidence score for each license plate, and an
