@@ -51,6 +51,9 @@ Results of the training process given by YOLO:
 | Recall | 0.972 | 97.2% of actual plates were correctly detected |
 | mAP50 | 0.985 | Detection accuracy (IoU0.5) |
 | mAP50-95 | 0.715 | Performance over stricter thresholds |
+| Val Box Loss | 1.087 | Localization error |
+| Val Class Loss | 0.357 | Confidence for classification |
+| Val DFL Loss | 1.129  | Distance from predicted to ground truth |
 
 After training this pipeline, I was very impressed and satisfied with the results. A very high
 precision and recall would mean a high confidence score for each license plate, and an
