@@ -66,4 +66,10 @@ pretrained to detect different types of vehicles.
 
 ### References   
 
+[1] What is deep learning?. IBM. (2025, April 17). https://www.ibm.com/think/topics/deep-
+learning
+
+[2] Keita, Z. (2024, September 28). Yolo Object Detection explained: A beginner’s guide.
+DataCamp. https://www.datacamp.com/blog/yolo-object-detection-explained
+
 ### Installation & Setup
