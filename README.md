@@ -72,4 +72,10 @@ learning
 [2] Keita, Z. (2024, September 28). Yolo Object Detection explained: A beginner’s guide.
 DataCamp. https://www.datacamp.com/blog/yolo-object-detection-explained
 
+[3] Yolo11 new. Ultralytics YOLO Docs. (2025, February 26).
+https://docs.ultralytics.com/models/yolo11/#overview
+
+[4] Abewley. (n.d.). Abewley/Sort: Simple, online, and realtime tracking of multiple objects
+in a video sequence. GitHub. https://github.com/abewley/sort
+
 ### Installation & Setup
