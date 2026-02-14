@@ -78,4 +78,8 @@ https://docs.ultralytics.com/models/yolo11/#overview
 [4] Abewley. (n.d.). Abewley/Sort: Simple, online, and realtime tracking of multiple objects
 in a video sequence. GitHub. https://github.com/abewley/sort
 
+[5] Mahajan, A. (2023, October 29). EasyOCR: A comprehensive guide. Medium.
+https://medium.com/@adityamahajan.work/easyocr-a-comprehensive-guide-
+5ff1cb850168
+
 ### Installation & Setup
