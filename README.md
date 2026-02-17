@@ -29,6 +29,25 @@ vision models and machine learning inference techniques.
 
 ### Model Summary
 
+## Pipeline Architecture
+
+The system operates through the following stages:
+
+1. Vehicle Detection  
+   A pre-trained YOLO model identifies vehicles within each video frame.
+
+2. License Plate Detection  
+   A custom-trained YOLOv11 model detects license plates inside detected vehicle regions.
+
+3. Object Tracking  
+   SORT tracking assigns consistent IDs to vehicles across frames using Kalman filtering and Hungarian matching.
+
+4. Optical Character Recognition  
+   EasyOCR extracts alphanumeric characters from cropped license plate images.
+
+5. Output Generation  
+   Detected plates and recognized text are annotated and saved for analysis.
+
 ### Results
 
 #### Training Results for YOLOv11
