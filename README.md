@@ -29,7 +29,7 @@ vision models and machine learning inference techniques.
 
 ### Model Summary
 
-## Pipeline Architecture
+### Pipeline Architecture
 
 The system operates through the following stages:
 
