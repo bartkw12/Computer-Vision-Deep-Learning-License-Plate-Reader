@@ -105,20 +105,26 @@ https://medium.com/@adityamahajan.work/easyocr-a-comprehensive-guide-
 
 #### 1. Clone Repository
 
+```bash
 git clone https://github.com/bartkw12/Computer-Vision-Deep-Learning-License-Plate-Reader.git
 cd Computer-Vision-Deep-Learning-License-Plate-Reader
+```
 
 #### 2. Create Virtual Environment
 
+
+```bash
 python -m venv venv
 source venv/bin/activate      # Linux / Mac
 venv\Scripts\activate         # Windows
+```
 
 #### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
-'''
+```
+
 
 
 
