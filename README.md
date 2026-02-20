@@ -24,6 +24,8 @@ vision models and machine learning inference techniques.
 - [Results](#Results)
 - [References](#References)
 - [Installation & Setup](#Installation--Setup)
+- [Usage](#usage)
+- [Future Improvements](#future-improvements)
 
 ### Important Links
 
