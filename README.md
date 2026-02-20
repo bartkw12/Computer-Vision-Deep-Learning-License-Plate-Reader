@@ -127,6 +127,12 @@ venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 ```
 
+### Usage
 
+```bash
+python main_pipeline.py
+```
+
+### Future Improvements
 
 
