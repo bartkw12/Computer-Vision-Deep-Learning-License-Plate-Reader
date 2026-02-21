@@ -135,4 +135,6 @@ python main_pipeline.py
 
 ### Future Improvements
 
-
+The Toronto Police Services have implemented a license plate scanner on their vehicles
+called Automatic License Plate Recognition (ALPR) technology to receive real-time alerting
+in patrol vehicles [7]. 
