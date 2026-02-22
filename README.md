@@ -103,6 +103,10 @@ in a video sequence. GitHub. https://github.com/abewley/sort
 https://medium.com/@adityamahajan.work/easyocr-a-comprehensive-guide-
 5ff1cb850168
 
+[6] Projects, R. U. (2025, April 2). License Plate Recognition Dataset and pre-trained model
+by Roboflow universe projects. Roboflow. https://universe.roboflow.com/roboflow-
+universe-projects/license-plate-recognition-rxg4e/dataset/4/images
+
 ### Installation & Setup
 
 #### 1. Clone Repository
