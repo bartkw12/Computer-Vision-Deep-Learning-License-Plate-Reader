@@ -22,10 +22,10 @@ vision models and machine learning inference techniques.
 - [Important Links](#Important-Links)
 - [Model Summary](#Model-Summary)
 - [Results](#Results)
-- [References](#References)
 - [Installation & Setup](#Installation--Setup)
 - [Usage](#usage)
 - [Future Improvements](#future-improvements)
+- [References](#References)
 
 ### Important Links
 
@@ -84,29 +84,6 @@ This model was just trained on license plates and not on cars. A second pre-trai
 for the COCO dataset from Ultralytics was used to detect vehicles. This model was
 pretrained to detect different types of vehicles.
 
-
-### References   
-
-[1] What is deep learning?. IBM. (2025, April 17). https://www.ibm.com/think/topics/deep-
-learning
-
-[2] Keita, Z. (2024, September 28). Yolo Object Detection explained: A beginner’s guide.
-DataCamp. https://www.datacamp.com/blog/yolo-object-detection-explained
-
-[3] Yolo11 new. Ultralytics YOLO Docs. (2025, February 26).
-https://docs.ultralytics.com/models/yolo11/#overview
-
-[4] Abewley. (n.d.). Abewley/Sort: Simple, online, and realtime tracking of multiple objects
-in a video sequence. GitHub. https://github.com/abewley/sort
-
-[5] Mahajan, A. (2023, October 29). EasyOCR: A comprehensive guide. Medium.
-https://medium.com/@adityamahajan.work/easyocr-a-comprehensive-guide-
-5ff1cb850168
-
-[6] Projects, R. U. (2025, April 2). License Plate Recognition Dataset and pre-trained model
-by Roboflow universe projects. Roboflow. https://universe.roboflow.com/roboflow-
-universe-projects/license-plate-recognition-rxg4e/dataset/4/images
-
 ### Installation & Setup
 
 #### 1. Clone Repository
@@ -142,3 +119,25 @@ python main_pipeline.py
 The Toronto Police Services have implemented a license plate scanner on their vehicles
 called Automatic License Plate Recognition (ALPR) technology to receive real-time alerting
 in patrol vehicles [7]. 
+
+### References   
+
+[1] What is deep learning?. IBM. (2025, April 17). https://www.ibm.com/think/topics/deep-
+learning
+
+[2] Keita, Z. (2024, September 28). Yolo Object Detection explained: A beginner’s guide.
+DataCamp. https://www.datacamp.com/blog/yolo-object-detection-explained
+
+[3] Yolo11 new. Ultralytics YOLO Docs. (2025, February 26).
+https://docs.ultralytics.com/models/yolo11/#overview
+
+[4] Abewley. (n.d.). Abewley/Sort: Simple, online, and realtime tracking of multiple objects
+in a video sequence. GitHub. https://github.com/abewley/sort
+
+[5] Mahajan, A. (2023, October 29). EasyOCR: A comprehensive guide. Medium.
+https://medium.com/@adityamahajan.work/easyocr-a-comprehensive-guide-
+5ff1cb850168
+
+[6] Projects, R. U. (2025, April 2). License Plate Recognition Dataset and pre-trained model
+by Roboflow universe projects. Roboflow. https://universe.roboflow.com/roboflow-
+universe-projects/license-plate-recognition-rxg4e/dataset/4/images
