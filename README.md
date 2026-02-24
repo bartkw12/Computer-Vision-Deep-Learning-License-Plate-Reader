@@ -120,6 +120,12 @@ The Toronto Police Services have implemented a license plate scanner on their ve
 called Automatic License Plate Recognition (ALPR) technology to receive real-time alerting
 in patrol vehicles [7]. 
 
+The license plate reader project demonstrates a functional and efficient detection system
+powered by deep learning that could be scaled to real-life deployment. By utilizing
+YOLOv11 for object detection, SORT for tracking, and EasyOCR for text recognition, the full
+pipeline was created that can process raw video footage, identify vehicles, localize license
+plates, and extract and display readable text. 
+
 ### References   
 
 [1] What is deep learning?. IBM. (2025, April 17). https://www.ibm.com/think/topics/deep-
