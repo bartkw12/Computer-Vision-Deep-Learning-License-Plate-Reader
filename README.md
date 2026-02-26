@@ -126,6 +126,11 @@ YOLOv11 for object detection, SORT for tracking, and EasyOCR for text recognitio
 pipeline was created that can process raw video footage, identify vehicles, localize license
 plates, and extract and display readable text. 
 
+The system demonstrated great results,
+showing a high detection accuracy and robust detection in diverse conditions of license
+plates, highlighting the strengths but also showcasing the weaknesses and areas of
+improvement for this implementation.
+
 ### References   
 
 [1] What is deep learning?. IBM. (2025, April 17). https://www.ibm.com/think/topics/deep-
