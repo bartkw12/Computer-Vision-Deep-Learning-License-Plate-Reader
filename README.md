@@ -118,7 +118,11 @@ python main_pipeline.py
 
 The Toronto Police Services have implemented a license plate scanner on their vehicles
 called Automatic License Plate Recognition (ALPR) technology to receive real-time alerting
-in patrol vehicles [7]. 
+in patrol vehicles [7]. This license plate scanner is much more accurate and works much
+better than my implementation, meaning there is a lot of room for improvement. The
+license plate readers' tracking ability could be enhanced by using deep SORT. This would
+incorporate appearance features using CNN embeddings, more robust ID switching, and it
+is overall better for tracking in crowded or complex scenes.
 
 The license plate reader project demonstrates a functional and efficient detection system
 powered by deep learning that could be scaled to real-life deployment. By utilizing
