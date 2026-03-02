@@ -127,7 +127,9 @@ is overall better for tracking in crowded or complex scenes.
 Other improvements could be made to the OCR accuracy. A custom-trained model could
 be used to fine-tune OCR on license plate images. Post-OCR correction could be improved
 by not only using a regex but also implementing a language model/pattern matching to fix
-misread characters. 
+misread characters. Lastly, improving input image quality by applying super-resolution to
+enhance low-res plates before OCR, or implementing motion blur reduction to stabilize
+video, would improve confidence scores and final output correctness.
 
 The license plate reader project demonstrates a functional and efficient detection system
 powered by deep learning that could be scaled to real-life deployment. By utilizing
