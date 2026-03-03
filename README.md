@@ -131,6 +131,8 @@ misread characters. Lastly, improving input image quality by applying super-reso
 enhance low-res plates before OCR, or implementing motion blur reduction to stabilize
 video, would improve confidence scores and final output correctness.
 
+#### Conclusion
+
 The license plate reader project demonstrates a functional and efficient detection system
 powered by deep learning that could be scaled to real-life deployment. By utilizing
 YOLOv11 for object detection, SORT for tracking, and EasyOCR for text recognition, the full
