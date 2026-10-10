@@ -1,0 +1,19 @@
+# Training settings for the license plate detector (`alpr train`).
+#
+# `model` is the checkpoint to start from; every other key is passed to
+# Ultralytics' YOLO.train(). Anything not listed keeps the Ultralytics default.
+
+model: weights/yolo11n.pt     # COCO-pretrained YOLO11n, downloaded if missing
+data: data/plates/data.yaml   # YOLO-format dataset, see data/README.md
+
+epochs: 100
+batch: 16
+imgsz: 640
+
+seed: 0
+deterministic: true
+workers: 4                    # modest, to stay within 14 GB of RAM
+
+project: runs
+name: plate_yolo11n
+exist_ok: false               # refuse to overwrite an earlier run
