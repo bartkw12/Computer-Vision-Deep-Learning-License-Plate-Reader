@@ -1,0 +1,48 @@
+# Pipeline settings.
+#
+# These are the defaults built into alpr.config (a test keeps this file and the
+# code in agreement). Pass a modified copy with `alpr run --config FILE`, or
+# change single values with `--set key=value`, e.g. `--set tracker.max_age=10`.
+
+device: auto              # auto | cpu | cuda:0
+
+# Vehicle detector: COCO-pretrained, restricted to car, motorcycle, bus, truck.
+vehicle:
+  weights: weights/yolo11n.pt
+  conf: 0.25              # minimum detection confidence
+  iou: 0.7                # NMS IoU threshold
+  imgsz: 640              # inference size, longest side in pixels
+
+# License plate detector: YOLO11n fine-tuned on plates (see `alpr train`).
+plate:
+  weights: weights/plate_yolo11n.pt
+  conf: 0.25
+  iou: 0.7
+  imgsz: 640
+
+# Where the plate detector looks:
+#   frame   - once on the whole frame
+#   vehicle - on each tracked vehicle's crop (plates appear larger, costs more)
+plate_search: frame
+
+# Share of a plate box that must lie inside a vehicle box to match the two.
+min_plate_overlap: 0.7
+
+tracker:                  # SORT
+  max_age: 30             # frames a track survives without a detection
+  min_hits: 3             # consecutive detections before a track is reported
+  iou_threshold: 0.3      # minimum overlap to continue a track
+
+ocr:
+  backend: easyocr        # easyocr | easyocr-recognize | fast-plate-ocr (see alpr.ocr.BACKENDS)
+  preprocess: none        # none | gray | otsu_inv | clahe | upscale, joined with +
+  every: 1                # read each track's plate at most once per N frames
+  min_plate_height: 0     # skip plates shorter than this many pixels
+
+plate_format:
+  name: ontario           # ontario | ontario-extended | 4L3D | 3L4D | any
+  max_substitutions: 2    # look-alike characters corrected per read; 0 = exact only
+
+aggregation:
+  strategy: string_vote   # max_conf | string_vote | char_vote
+  min_reads: 1            # tracks with fewer valid reads report no plate
