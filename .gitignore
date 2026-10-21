@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+
+# Environments
+.venv/
+venv/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Editors
+.idea/
+.vscode/
+
+# Data, weights and run outputs: large, regenerable, or not ours to redistribute.
+# Each folder keeps a README describing what belongs in it.
+/data/*
+!/data/README.md
+/weights/*
+!/weights/README.md
+/runs/
+/outputs/
+*.pt
+*.onnx
+
+# OS
+.DS_Store
+Thumbs.db
