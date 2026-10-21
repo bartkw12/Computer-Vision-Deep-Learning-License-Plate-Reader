@@ -1,0 +1,94 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alpr"
+dynamic = ["version"]
+description = "License plate recognition for video: YOLO11 detection, SORT tracking, and OCR with temporal voting."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "AGPL-3.0-only"
+license-files = ["LICENSE"]
+authors = [{ name = "Bart Kowal" }]
+keywords = ["computer-vision", "license-plate-recognition", "alpr", "yolo", "object-tracking", "ocr"]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+]
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "opencv-python>=4.8",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+    "torch>=2.2",
+    "ultralytics>=8.3.0",    # 8.3.0 is the first release with YOLO11
+    "easyocr>=1.7.2",
+    "imageio-ffmpeg>=0.5",   # bundles an ffmpeg binary for H.264 output
+]
+
+[project.optional-dependencies]
+# Plate-specific recognizer compared against EasyOCR in the ablation study.
+ocr = ["fast-plate-ocr[onnx]>=1.0"]
+dev = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "ruff>=0.6",
+    "pre-commit>=3.7",
+    "matplotlib>=3.8",
+]
+
+[project.scripts]
+alpr = "alpr.cli:main"
+
+[project.urls]
+Repository = "https://github.com/bartkw12/Computer-Vision-Deep-Learning-License-Plate-Reader"
+
+[tool.setuptools.dynamic]
+version = { attr = "alpr.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+src = ["src", "tests", "scripts"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W", "F",   # pycodestyle, pyflakes
+    "I",             # import order
+    "N",             # naming
+    "UP",            # modern syntax
+    "B",             # likely bugs
+    "SIM", "C4",     # simplifications
+    "PTH",           # pathlib over os.path
+    "RET",           # return consistency
+    "RUF",
+    "D",             # docstrings
+]
+ignore = [
+    "D105",  # docstrings on magic methods
+    "D107",  # docstring on __init__ (documented on the class)
+]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "models: needs downloaded model weights; deselect with -m 'not models'",
+]
+
+[tool.coverage.run]
+source = ["alpr"]
+branch = true
