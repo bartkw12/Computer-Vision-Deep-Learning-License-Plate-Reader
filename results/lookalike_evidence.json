@@ -1,0 +1,968 @@
+{
+  "method": {
+    "evidence_regions": [
+      "us",
+      "eu"
+    ],
+    "held_out_region": "br",
+    "readers": [
+      "easyocr|none",
+      "fast-plate-ocr:cct-xs-v2-global-model|none"
+    ],
+    "min_count": 5,
+    "min_share": 0.6
+  },
+  "digit_fixes": {
+    "A": "4",
+    "B": "8",
+    "D": "0",
+    "G": "6",
+    "I": "1",
+    "L": "4",
+    "O": "0",
+    "S": "5",
+    "T": "1"
+  },
+  "digit_evidence": [
+    {
+      "read": "L",
+      "top_truth": "4",
+      "count": 19,
+      "of": 30,
+      "share": 0.633,
+      "accepted": true,
+      "all": {
+        "4": 19,
+        "1": 7,
+        "0": 2,
+        "6": 2
+      }
+    },
+    {
+      "read": "O",
+      "top_truth": "0",
+      "count": 28,
+      "of": 30,
+      "share": 0.933,
+      "accepted": true,
+      "all": {
+        "0": 28,
+        "6": 1,
+        "1": 1
+      }
+    },
+    {
+      "read": "Z",
+      "top_truth": "7",
+      "count": 16,
+      "of": 27,
+      "share": 0.593,
+      "accepted": false,
+      "all": {
+        "7": 16,
+        "2": 9,
+        "0": 1,
+        "4": 1
+      }
+    },
+    {
+      "read": "S",
+      "top_truth": "5",
+      "count": 19,
+      "of": 25,
+      "share": 0.76,
+      "accepted": true,
+      "all": {
+        "5": 19,
+        "9": 2,
+        "3": 2,
+        "4": 2
+      }
+    },
+    {
+      "read": "G",
+      "top_truth": "6",
+      "count": 19,
+      "of": 23,
+      "share": 0.826,
+      "accepted": true,
+      "all": {
+        "6": 19,
+        "8": 2,
+        "1": 1,
+        "4": 1
+      }
+    },
+    {
+      "read": "E",
+      "top_truth": "8",
+      "count": 10,
+      "of": 20,
+      "share": 0.5,
+      "accepted": false,
+      "all": {
+        "8": 10,
+        "6": 5,
+        "2": 2,
+        "1": 1,
+        "3": 1,
+        "5": 1
+      }
+    },
+    {
+      "read": "B",
+      "top_truth": "8",
+      "count": 12,
+      "of": 18,
+      "share": 0.667,
+      "accepted": true,
+      "all": {
+        "8": 12,
+        "6": 2,
+        "5": 2,
+        "0": 1,
+        "3": 1
+      }
+    },
+    {
+      "read": "I",
+      "top_truth": "1",
+      "count": 9,
+      "of": 11,
+      "share": 0.818,
+      "accepted": true,
+      "all": {
+        "1": 9,
+        "0": 2
+      }
+    },
+    {
+      "read": "A",
+      "top_truth": "4",
+      "count": 8,
+      "of": 10,
+      "share": 0.8,
+      "accepted": true,
+      "all": {
+        "4": 8,
+        "3": 1,
+        "8": 1
+      }
+    },
+    {
+      "read": "D",
+      "top_truth": "0",
+      "count": 5,
+      "of": 6,
+      "share": 0.833,
+      "accepted": true,
+      "all": {
+        "0": 5,
+        "3": 1
+      }
+    },
+    {
+      "read": "T",
+      "top_truth": "1",
+      "count": 4,
+      "of": 6,
+      "share": 0.667,
+      "accepted": true,
+      "all": {
+        "1": 4,
+        "6": 1,
+        "7": 1
+      }
+    },
+    {
+      "read": "U",
+      "top_truth": "0",
+      "count": 2,
+      "of": 3,
+      "share": 0.667,
+      "accepted": false,
+      "all": {
+        "0": 2,
+        "1": 1
+      }
+    },
+    {
+      "read": "F",
+      "top_truth": "8",
+      "count": 1,
+      "of": 2,
+      "share": 0.5,
+      "accepted": false,
+      "all": {
+        "8": 1,
+        "5": 1
+      }
+    },
+    {
+      "read": "H",
+      "top_truth": "0",
+      "count": 1,
+      "of": 2,
+      "share": 0.5,
+      "accepted": false,
+      "all": {
+        "0": 1,
+        "4": 1
+      }
+    },
+    {
+      "read": "J",
+      "top_truth": "9",
+      "count": 1,
+      "of": 2,
+      "share": 0.5,
+      "accepted": false,
+      "all": {
+        "9": 1,
+        "3": 1
+      }
+    },
+    {
+      "read": "P",
+      "top_truth": "2",
+      "count": 1,
+      "of": 2,
+      "share": 0.5,
+      "accepted": false,
+      "all": {
+        "2": 1,
+        "9": 1
+      }
+    },
+    {
+      "read": "C",
+      "top_truth": "1",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "1": 1
+      }
+    },
+    {
+      "read": "K",
+      "top_truth": "8",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "8": 1
+      }
+    },
+    {
+      "read": "M",
+      "top_truth": "1",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "1": 1
+      }
+    },
+    {
+      "read": "N",
+      "top_truth": "0",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "0": 1
+      }
+    },
+    {
+      "read": "Q",
+      "top_truth": "7",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "7": 1
+      }
+    },
+    {
+      "read": "R",
+      "top_truth": "0",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "0": 1
+      }
+    },
+    {
+      "read": "Y",
+      "top_truth": "4",
+      "count": 1,
+      "of": 1,
+      "share": 1.0,
+      "accepted": false,
+      "all": {
+        "4": 1
+      }
+    }
+  ],
+  "letter_fixes": {
+    "": {
+      "4": "A",
+      "5": "S"
+    },
+    "GIQ": {
+      "4": "A",
+      "5": "S"
+    },
+    "GIQU": {
+      "0": "O",
+      "4": "A",
+      "5": "S"
+    },
+    "GIOQU": {
+      "4": "A",
+      "5": "S"
+    }
+  },
+  "letter_evidence": {
+    "": [
+      {
+        "read": "0",
+        "top_truth": "O",
+        "count": 22,
+        "of": 38,
+        "share": 0.579,
+        "accepted": false,
+        "all": {
+          "O": 22,
+          "D": 7,
+          "U": 3,
+          "C": 2,
+          "T": 1,
+          "M": 1,
+          "E": 1,
+          "G": 1
+        }
+      },
+      {
+        "read": "4",
+        "top_truth": "A",
+        "count": 19,
+        "of": 24,
+        "share": 0.792,
+        "accepted": true,
+        "all": {
+          "A": 19,
+          "M": 2,
+          "U": 1,
+          "B": 1,
+          "L": 1
+        }
+      },
+      {
+        "read": "1",
+        "top_truth": "I",
+        "count": 3,
+        "of": 11,
+        "share": 0.273,
+        "accepted": false,
+        "all": {
+          "I": 3,
+          "A": 2,
+          "J": 2,
+          "L": 1,
+          "T": 1,
+          "B": 1,
+          "N": 1
+        }
+      },
+      {
+        "read": "5",
+        "top_truth": "S",
+        "count": 4,
+        "of": 5,
+        "share": 0.8,
+        "accepted": true,
+        "all": {
+          "S": 4,
+          "H": 1
+        }
+      },
+      {
+        "read": "2",
+        "top_truth": "Z",
+        "count": 3,
+        "of": 4,
+        "share": 0.75,
+        "accepted": false,
+        "all": {
+          "Z": 3,
+          "O": 1
+        }
+      },
+      {
+        "read": "6",
+        "top_truth": "G",
+        "count": 4,
+        "of": 4,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "G": 4
+        }
+      },
+      {
+        "read": "7",
+        "top_truth": "T",
+        "count": 2,
+        "of": 4,
+        "share": 0.5,
+        "accepted": false,
+        "all": {
+          "T": 2,
+          "Z": 2
+        }
+      },
+      {
+        "read": "3",
+        "top_truth": "E",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "E": 2,
+          "D": 1
+        }
+      },
+      {
+        "read": "8",
+        "top_truth": "B",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "B": 2,
+          "A": 1
+        }
+      },
+      {
+        "read": "9",
+        "top_truth": "S",
+        "count": 2,
+        "of": 2,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "S": 2
+        }
+      }
+    ],
+    "GIQ": [
+      {
+        "read": "0",
+        "top_truth": "O",
+        "count": 22,
+        "of": 37,
+        "share": 0.595,
+        "accepted": false,
+        "all": {
+          "O": 22,
+          "D": 7,
+          "U": 3,
+          "C": 2,
+          "T": 1,
+          "M": 1,
+          "E": 1
+        }
+      },
+      {
+        "read": "4",
+        "top_truth": "A",
+        "count": 19,
+        "of": 24,
+        "share": 0.792,
+        "accepted": true,
+        "all": {
+          "A": 19,
+          "M": 2,
+          "U": 1,
+          "B": 1,
+          "L": 1
+        }
+      },
+      {
+        "read": "I",
+        "top_truth": "W",
+        "count": 2,
+        "of": 9,
+        "share": 0.222,
+        "accepted": false,
+        "all": {
+          "W": 2,
+          "T": 2,
+          "N": 1,
+          "M": 1,
+          "U": 1,
+          "Z": 1,
+          "A": 1
+        }
+      },
+      {
+        "read": "1",
+        "top_truth": "A",
+        "count": 2,
+        "of": 8,
+        "share": 0.25,
+        "accepted": false,
+        "all": {
+          "A": 2,
+          "J": 2,
+          "L": 1,
+          "T": 1,
+          "B": 1,
+          "N": 1
+        }
+      },
+      {
+        "read": "5",
+        "top_truth": "S",
+        "count": 4,
+        "of": 5,
+        "share": 0.8,
+        "accepted": true,
+        "all": {
+          "S": 4,
+          "H": 1
+        }
+      },
+      {
+        "read": "2",
+        "top_truth": "Z",
+        "count": 3,
+        "of": 4,
+        "share": 0.75,
+        "accepted": false,
+        "all": {
+          "Z": 3,
+          "O": 1
+        }
+      },
+      {
+        "read": "7",
+        "top_truth": "T",
+        "count": 2,
+        "of": 4,
+        "share": 0.5,
+        "accepted": false,
+        "all": {
+          "T": 2,
+          "Z": 2
+        }
+      },
+      {
+        "read": "3",
+        "top_truth": "E",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "E": 2,
+          "D": 1
+        }
+      },
+      {
+        "read": "8",
+        "top_truth": "B",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "B": 2,
+          "A": 1
+        }
+      },
+      {
+        "read": "9",
+        "top_truth": "S",
+        "count": 2,
+        "of": 2,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "S": 2
+        }
+      },
+      {
+        "read": "G",
+        "top_truth": "L",
+        "count": 1,
+        "of": 1,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "L": 1
+        }
+      }
+    ],
+    "GIQU": [
+      {
+        "read": "0",
+        "top_truth": "O",
+        "count": 22,
+        "of": 34,
+        "share": 0.647,
+        "accepted": true,
+        "all": {
+          "O": 22,
+          "D": 7,
+          "C": 2,
+          "T": 1,
+          "M": 1,
+          "E": 1
+        }
+      },
+      {
+        "read": "4",
+        "top_truth": "A",
+        "count": 19,
+        "of": 23,
+        "share": 0.826,
+        "accepted": true,
+        "all": {
+          "A": 19,
+          "M": 2,
+          "B": 1,
+          "L": 1
+        }
+      },
+      {
+        "read": "1",
+        "top_truth": "A",
+        "count": 2,
+        "of": 8,
+        "share": 0.25,
+        "accepted": false,
+        "all": {
+          "A": 2,
+          "J": 2,
+          "L": 1,
+          "T": 1,
+          "B": 1,
+          "N": 1
+        }
+      },
+      {
+        "read": "I",
+        "top_truth": "W",
+        "count": 2,
+        "of": 8,
+        "share": 0.25,
+        "accepted": false,
+        "all": {
+          "W": 2,
+          "T": 2,
+          "N": 1,
+          "M": 1,
+          "Z": 1,
+          "A": 1
+        }
+      },
+      {
+        "read": "U",
+        "top_truth": "V",
+        "count": 2,
+        "of": 6,
+        "share": 0.333,
+        "accepted": false,
+        "all": {
+          "V": 2,
+          "H": 1,
+          "J": 1,
+          "W": 1,
+          "A": 1
+        }
+      },
+      {
+        "read": "5",
+        "top_truth": "S",
+        "count": 4,
+        "of": 5,
+        "share": 0.8,
+        "accepted": true,
+        "all": {
+          "S": 4,
+          "H": 1
+        }
+      },
+      {
+        "read": "2",
+        "top_truth": "Z",
+        "count": 3,
+        "of": 4,
+        "share": 0.75,
+        "accepted": false,
+        "all": {
+          "Z": 3,
+          "O": 1
+        }
+      },
+      {
+        "read": "7",
+        "top_truth": "T",
+        "count": 2,
+        "of": 4,
+        "share": 0.5,
+        "accepted": false,
+        "all": {
+          "T": 2,
+          "Z": 2
+        }
+      },
+      {
+        "read": "3",
+        "top_truth": "E",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "E": 2,
+          "D": 1
+        }
+      },
+      {
+        "read": "8",
+        "top_truth": "B",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "B": 2,
+          "A": 1
+        }
+      },
+      {
+        "read": "9",
+        "top_truth": "S",
+        "count": 2,
+        "of": 2,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "S": 2
+        }
+      },
+      {
+        "read": "G",
+        "top_truth": "L",
+        "count": 1,
+        "of": 1,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "L": 1
+        }
+      }
+    ],
+    "GIOQU": [
+      {
+        "read": "4",
+        "top_truth": "A",
+        "count": 19,
+        "of": 23,
+        "share": 0.826,
+        "accepted": true,
+        "all": {
+          "A": 19,
+          "M": 2,
+          "B": 1,
+          "L": 1
+        }
+      },
+      {
+        "read": "0",
+        "top_truth": "D",
+        "count": 7,
+        "of": 12,
+        "share": 0.583,
+        "accepted": false,
+        "all": {
+          "D": 7,
+          "C": 2,
+          "T": 1,
+          "M": 1,
+          "E": 1
+        }
+      },
+      {
+        "read": "1",
+        "top_truth": "A",
+        "count": 2,
+        "of": 8,
+        "share": 0.25,
+        "accepted": false,
+        "all": {
+          "A": 2,
+          "J": 2,
+          "L": 1,
+          "T": 1,
+          "B": 1,
+          "N": 1
+        }
+      },
+      {
+        "read": "I",
+        "top_truth": "W",
+        "count": 2,
+        "of": 8,
+        "share": 0.25,
+        "accepted": false,
+        "all": {
+          "W": 2,
+          "T": 2,
+          "N": 1,
+          "M": 1,
+          "Z": 1,
+          "A": 1
+        }
+      },
+      {
+        "read": "U",
+        "top_truth": "V",
+        "count": 2,
+        "of": 6,
+        "share": 0.333,
+        "accepted": false,
+        "all": {
+          "V": 2,
+          "H": 1,
+          "J": 1,
+          "W": 1,
+          "A": 1
+        }
+      },
+      {
+        "read": "5",
+        "top_truth": "S",
+        "count": 4,
+        "of": 5,
+        "share": 0.8,
+        "accepted": true,
+        "all": {
+          "S": 4,
+          "H": 1
+        }
+      },
+      {
+        "read": "7",
+        "top_truth": "T",
+        "count": 2,
+        "of": 4,
+        "share": 0.5,
+        "accepted": false,
+        "all": {
+          "T": 2,
+          "Z": 2
+        }
+      },
+      {
+        "read": "2",
+        "top_truth": "Z",
+        "count": 3,
+        "of": 3,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "Z": 3
+        }
+      },
+      {
+        "read": "3",
+        "top_truth": "E",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "E": 2,
+          "D": 1
+        }
+      },
+      {
+        "read": "8",
+        "top_truth": "B",
+        "count": 2,
+        "of": 3,
+        "share": 0.667,
+        "accepted": false,
+        "all": {
+          "B": 2,
+          "A": 1
+        }
+      },
+      {
+        "read": "9",
+        "top_truth": "S",
+        "count": 2,
+        "of": 2,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "S": 2
+        }
+      },
+      {
+        "read": "O",
+        "top_truth": "C",
+        "count": 1,
+        "of": 2,
+        "share": 0.5,
+        "accepted": false,
+        "all": {
+          "C": 1,
+          "D": 1
+        }
+      },
+      {
+        "read": "G",
+        "top_truth": "L",
+        "count": 1,
+        "of": 1,
+        "share": 1.0,
+        "accepted": false,
+        "all": {
+          "L": 1
+        }
+      }
+    ]
+  },
+  "environment": {
+    "timestamp_utc": "2026-10-10T03:52:44+00:00",
+    "git_commit": "c5f0a4efcc5065ad46069fe4c0e0495030a478da",
+    "git_dirty": true,
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+    "cpu": "AMD Ryzen 7 6800HS with Radeon Graphics",
+    "packages": {
+      "alpr": "1.0.0",
+      "torch": "2.14.1",
+      "ultralytics": "8.4.175",
+      "easyocr": "1.7.2",
+      "fast-plate-ocr": "1.1.0",
+      "opencv-python": "5.0.0.93",
+      "numpy": "2.5.3"
+    }
+  }
+}
