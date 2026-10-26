@@ -1,7 +1,12 @@
+import json
+from pathlib import Path
+
 import pytest
 
 from alpr.plate_format import (
+    DIGIT_FIXES,
     FOUR_LETTERS_THREE_DIGITS,
+    LETTER_FIXES,
     ONTARIO_PASSENGER,
     PlateFormat,
     fit_plate,
@@ -11,6 +16,7 @@ from alpr.plate_format import (
 
 ONTARIO = get_formats("ontario")
 EXTENDED = get_formats("ontario-extended")
+EVIDENCE = Path(__file__).parents[1] / "results" / "lookalike_evidence.json"
 
 
 @pytest.mark.parametrize(
@@ -32,8 +38,7 @@ def test_clean_read_needs_no_substitution():
     [
         ("BXYZ 1O3", "BXYZ103"),  # O read for a digit
         ("BXYZ 12S", "BXYZ125"),  # S read for 5
-        ("8XYZ 123", "BXYZ123"),  # 8 read for B
-        ("B0YZ 123", "BDYZ123"),  # 0 read for a letter; O is never issued, so it is a D
+        ("4XYZ 123", "AXYZ123"),  # 4 read for A
     ],
 )
 def test_lookalikes_are_corrected_not_rejected(ocr_text, expected):
@@ -46,6 +51,20 @@ def test_lookalikes_are_corrected_not_rejected(ocr_text, expected):
     assert fit is not None
     assert fit.text == expected
     assert fit.substitutions == 1
+
+
+@pytest.mark.parametrize(
+    "ocr_text",
+    [
+        # 8 at a letter position: seen only 3 times in the evidence, too rare to trust.
+        "8XYZ 123",
+        # 0 at a letter position: a D in 7 of 12 issued-letter cases, short of the 60% bar.
+        "B0YZ 123",
+    ],
+)
+def test_lookalikes_without_clear_evidence_are_rejected(ocr_text):
+    """The obvious-looking fixes the measurement did not support are not guessed."""
+    assert fit_plate(ocr_text, ONTARIO) is None
 
 
 def test_serial_is_found_inside_surrounding_text():
@@ -65,8 +84,8 @@ def test_exact_window_beats_a_corrected_one():
 
 
 def test_substitution_cap():
-    assert fit_plate("8XYZ1O3", ONTARIO, max_substitutions=2).text == "BXYZ103"
-    assert fit_plate("8XYZ1O3", ONTARIO, max_substitutions=1) is None
+    assert fit_plate("4XYZ1O3", ONTARIO, max_substitutions=2).text == "AXYZ103"
+    assert fit_plate("4XYZ1O3", ONTARIO, max_substitutions=1) is None
     # All three digits read as letters: no genuine digit left, so not a plate.
     assert fit_plate("BXYZIZS", ONTARIO, max_substitutions=2) is None
 
@@ -77,8 +96,8 @@ def test_strict_mode_accepts_exact_matches_only():
 
 
 def test_unused_letters_are_invalid_for_ontario_passenger():
-    # O is fixable (it can only be a D); I has no single look-alike, so the read is dropped.
-    assert fit_plate("BOYZ123", ONTARIO).text == "BDYZ123"
+    # None of O, I, U has a measured single look-alike, so each read is dropped.
+    assert fit_plate("BOYZ123", ONTARIO) is None
     assert fit_plate("BIYZ123", ONTARIO) is None
     assert fit_plate("BUYZ123", ONTARIO) is None
 
@@ -86,7 +105,16 @@ def test_unused_letters_are_invalid_for_ontario_passenger():
 def test_plain_4l3d_format_knows_nothing_about_unused_letters():
     plain = get_formats("4L3D")
     assert fit_plate("BOYZ123", plain).substitutions == 0
-    assert fit_plate("B0YZ123", plain).text == "BOYZ123"
+    # 0 at a letter position was an O only 58% of the time: not enough to correct.
+    assert fit_plate("B0YZ123", plain) is None
+    assert fit_plate("B5YZ123", plain).text == "BSYZ123"
+
+
+def test_tables_match_measured_evidence():
+    """The correction tables are the ones ``scripts/analyze_confusions.py`` derived."""
+    evidence = json.loads(EVIDENCE.read_text())
+    assert dict(DIGIT_FIXES) == evidence["digit_fixes"]
+    assert {key: dict(fixes) for key, fixes in LETTER_FIXES.items()} == evidence["letter_fixes"]
 
 
 @pytest.mark.parametrize(
