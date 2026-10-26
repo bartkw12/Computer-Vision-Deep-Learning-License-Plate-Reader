@@ -31,6 +31,9 @@ jobs:
           ruff check .
           ruff format --check .
 
+      - name: README matches results
+        run: python scripts/render_readme_tables.py --check
+
       # Tests marked "models" need downloaded weights and are run locally.
       - name: Test
         run: pytest -m "not models" --cov=alpr --cov-report=term-missing
