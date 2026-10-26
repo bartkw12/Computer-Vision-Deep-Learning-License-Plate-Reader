@@ -137,7 +137,8 @@ def main() -> None:
         fixes, evidence = derive(confusions, digits + unused, issued)
         report["letter_fixes"][unused] = dict(sorted(fixes.items()))
         report["letter_evidence"][unused] = evidence
-        print(f"letter positions, unused letters {unused or 'none':6s}: {report['letter_fixes'][unused]}")
+        label = unused or "none"
+        print(f"letter positions, unused letters {label:6s}: {report['letter_fixes'][unused]}")
 
     rejected = [row for row in digit_evidence if not row["accepted"] and row["of"] >= MIN_COUNT]
     print("seen often enough but too ambiguous to correct (digit positions):")
