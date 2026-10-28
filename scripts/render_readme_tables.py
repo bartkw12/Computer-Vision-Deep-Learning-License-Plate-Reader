@@ -44,6 +44,8 @@ STILLS = "ablation_ocr_stills.json"
 LOOKALIKES = "lookalike_evidence.json"
 TRAINING = "detector_training_original.json"
 LEAKAGE = "dataset_leakage.json"
+#: ``alpr eval-images --plate-weights ...`` output, one file per reader.
+ENDTOEND_FILES = ("endtoend_stills.json", "endtoend_stills_easyocr.json")
 DETECTOR_FILES = {
     "detector_original_test.json": ("original", "test"),
     "detector_original_val.json": ("original", "val"),
@@ -326,6 +328,38 @@ def render_leakage(files: Mapping[str, Results]) -> str:
     )
 
 
+def render_endtoend(files: Mapping[str, Results]) -> str:
+    """Detector plus reader on the benchmark photos, per reader."""
+    first = next(iter(files.values()))["end_to_end"]
+    detection = first["detection"]
+    regions = list(detection["by_region"])
+    recall = ", ".join(
+        f"{region.upper()} {_pct(detection['by_region'][region]['recall'])}" for region in regions
+    )
+    overall = detection["overall"]
+    text = (
+        f"The detector finds **{_pct(overall['recall'])}** of the {overall['n']} labeled plates "
+        f"at IoU ≥ {first['iou_threshold']} ({recall}); found plates overlap their label with a "
+        f"mean IoU of {overall['mean_iou_when_detected']:.2f}. Reading accuracy counts a missed "
+        "plate as wrong, next to the same reader on the labeled boxes.\n\n"
+    )
+    rows = []
+    for report in files.values():
+        reading = report["end_to_end"]["reading"]
+        rows.append(
+            [
+                f"`{report['recognition']['ocr']}`",
+                _with_ci(report["recognition"]["overall"]),
+                _with_ci(reading["overall"]),
+                f"{reading['overall']['cer']:.3f}",
+                *(_pct(reading["by_region"][region]["accuracy"]) for region in regions),
+            ]
+        )
+    header = ["Reader", "Labeled boxes", "End to end (95% CI)", "CER"]
+    header += [region.upper() for region in regions]
+    return text + _table(header, rows)
+
+
 # --- registry ---------------------------------------------------------------------
 
 
@@ -366,10 +400,10 @@ BLOCKS: dict[str, Block] = {
     ),
     "leakage": Block((LEAKAGE,), "python scripts/check_leakage.py", render_leakage),
     "endtoend-stills": Block(
-        ("endtoend_stills.json",),
-        "alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n.pt "
+        ENDTOEND_FILES,
+        "alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n_original.pt "
         "--out results/endtoend_stills.json",
-        None,
+        render_endtoend,
     ),
     "video": Block(
         ("video_eval.json",),
