@@ -6,9 +6,20 @@
 model: weights/yolo11n.pt     # COCO-pretrained YOLO11n, downloaded if missing
 data: data/plates/data.yaml   # YOLO-format dataset, see data/README.md
 
+# Values recovered from the original run (runs/original/train3/args.yaml,
+# Ultralytics 8.3.109). They equal that release's defaults and are written out
+# so a later release with different defaults still reproduces the run. The
+# original was set to 100 epochs but was stopped after 90.
 epochs: 100
+patience: 100
 batch: 16
 imgsz: 640
+optimizer: auto
+lr0: 0.01
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+warmup_epochs: 3.0
 
 seed: 0
 deterministic: true
