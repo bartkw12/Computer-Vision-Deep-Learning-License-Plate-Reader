@@ -200,7 +200,7 @@ Measured with `alpr val` on the dataset's held-out **test** split, next to the v
 Detector and reader together on the OpenALPR photos: plate-detection recall at IoU 0.5, then exact match on the detected crops.
 
 <!-- results:endtoend-stills -->
-> _Pending: produced by `alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n.pt --out results/endtoend_stills.json`._
+> _Pending: produced by `alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n_original.pt --out results/endtoend_stills.json`._
 <!-- /results:endtoend-stills -->
 
 ### End to end on video
@@ -271,7 +271,7 @@ Every setting is documented in [`configs/pipeline.yaml`](configs/pipeline.yaml);
 | Detector, test split | `alpr val --weights weights/plate_yolo11n_original.pt --split test --out results/detector_original_test.json` | `results/detector_original_test.json` |
 | Retraining | `alpr train` | `weights/plate_yolo11n.pt` |
 | Leakage check | `python scripts/check_leakage.py` | `results/dataset_leakage.json` |
-| End to end, stills | `alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n.pt --out results/endtoend_stills.json` | `results/endtoend_stills.json` |
+| End to end, stills | `alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n_original.pt --out results/endtoend_stills.json`, and again with `--ocr easyocr` | `results/endtoend_stills*.json` |
 | End to end, video | `alpr run VIDEO` → `alpr label-sheet` → `alpr eval-video` | `results/video_eval.json` |
 | Video ablations (A3–A7) | `python scripts/run_ablations.py video-replay` / `video-grid` | `results/ablation_video_*.json` |
 | Figures and tables | `make figures readme` | `assets/`, this README |
