@@ -30,6 +30,17 @@ htmlcov/
 *.pt
 *.onnx
 
+# Safety nets for large files landing outside those folders: transfer folders,
+# a stray Ultralytics run, videos, archives and dataset caches.
+/CV/
+/train*/
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.zip
+*.cache
+
 # OS
 .DS_Store
 Thumbs.db
