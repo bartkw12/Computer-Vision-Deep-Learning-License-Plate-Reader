@@ -117,7 +117,7 @@ Exact match on the 114 Brazilian plates, which all share the format `LLLDDDD`. I
 
 ![Format-aware correction on the Brazilian plates](assets/format_correction_br.png)
 
-Format knowledge helps the reader that makes look-alike mistakes and leaves nothing to fix for the one that doesn't.
+On these held-out plates the measured corrections fix almost nothing. EasyOCR's commonest fixable mistake here is `O` read as `0` in a letter position, a correction that fell just short of the evidence bar on the US and EU plates, so it is not made; and many of its wrong reads have the wrong number of characters, which no per-character correction can repair. What the format check does do is turn wrong reads into no read: accuracy stays the same while fewer plates get an answer, which matters on video, where other frames of the same vehicle can still supply the plate. Whether that pays off is measured there (A3). fast-plate-ocr makes almost no look-alike mistakes, so there is nothing to correct.
 
 ### Which look-alike corrections are real
 
