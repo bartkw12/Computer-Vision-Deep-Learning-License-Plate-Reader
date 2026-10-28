@@ -174,6 +174,44 @@ def test_unknown_block_is_an_error(project):
         run(readme, results)
 
 
+def endtoend_report(ocr, on_boxes, end_to_end):
+    detection = {"n": 20, "detected": 18, "recall": 0.9, "mean_iou_when_detected": 0.81}
+    return {
+        "recognition": {"ocr": ocr, "overall": score(on_boxes, 20)},
+        "end_to_end": {
+            "iou_threshold": 0.5,
+            "detection": {
+                "overall": detection,
+                "by_region": {
+                    "br": {**detection, "recall": 1.0},
+                    "us": {**detection, "recall": 0.8},
+                },
+            },
+            "reading": {
+                "overall": score(end_to_end, 20),
+                "by_region": {"br": score(end_to_end), "us": score(end_to_end / 2)},
+            },
+        },
+    }
+
+
+def test_endtoend_block_renders_one_row_per_reader(tmp_path):
+    (tmp_path / "endtoend_stills.json").write_text(
+        json.dumps(endtoend_report("fast-plate-ocr:cct-xs-v2-global-model", 0.9, 0.8))
+    )
+    text = render.render_block("endtoend-stills", tmp_path)
+    assert "finds **90.0%** of the 20 labeled plates at IoU ≥ 0.5 (BR 100.0%, US 80.0%)" in text
+    assert "| `fast-plate-ocr:cct-xs-v2-global-model` | 90.0% (45-95) | 80.0% (40-90) |" in text
+    assert "easyocr" not in text
+
+    (tmp_path / "endtoend_stills_easyocr.json").write_text(
+        json.dumps(endtoend_report("easyocr", 0.3, 0.2))
+    )
+    assert "| `easyocr` | 30.0% (15-65) | 20.0% (10-60) |" in render.render_block(
+        "endtoend-stills", tmp_path
+    )
+
+
 def test_results_without_a_renderer_are_an_error(tmp_path):
     (tmp_path / "video_eval.json").write_text("{}")
     with pytest.raises(SystemExit, match="no renderer"):
