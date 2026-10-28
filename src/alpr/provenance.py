@@ -14,14 +14,18 @@ from importlib import metadata
 from pathlib import Path
 from typing import Any
 
+#: Folders holding what this package *produces*. A result written there must
+#: not mark the next result as coming from uncommitted code.
+GENERATED_DIRS = ("results", "assets")
+
 _PACKAGES = ("alpr", "torch", "ultralytics", "easyocr", "fast-plate-ocr", "opencv-python", "numpy")
 
 
-def _git(*args: str) -> str | None:
+def _git(*args: str, cwd: Path | None = None) -> str | None:
     try:
         completed = subprocess.run(
             ["git", *args],
-            cwd=Path(__file__).parent,
+            cwd=cwd or Path(__file__).parent,
             capture_output=True,
             text=True,
             timeout=10,
@@ -51,6 +55,20 @@ def _package_versions() -> dict[str, str]:
     return versions
 
 
+def git_dirty(cwd: Path | None = None) -> bool | None:
+    """Whether the code differs from the checked-out commit.
+
+    Changes inside :data:`GENERATED_DIRS` are ignored: they are outputs, and
+    counting them would make every result after the first look dirty.
+
+    Returns:
+        ``None`` outside a git repository.
+    """
+    excludes = [f":(top,exclude){folder}" for folder in GENERATED_DIRS]
+    status = _git("status", "--porcelain", "--", ":(top)", *excludes, cwd=cwd)
+    return bool(status) if status is not None else None
+
+
 def environment_info(device: str | None = None) -> dict[str, Any]:
     """Describe the code revision, software and hardware in use.
 
@@ -61,12 +79,11 @@ def environment_info(device: str | None = None) -> dict[str, Any]:
     Returns:
         A JSON-serializable dictionary.
     """
-    status = _git("status", "--porcelain")
     info: dict[str, Any] = {
         "timestamp_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "git_commit": _git("rev-parse", "HEAD"),
         # True means the working tree had changes not captured by git_commit.
-        "git_dirty": bool(status) if status is not None else None,
+        "git_dirty": git_dirty(),
         "python": platform.python_version(),
         "platform": platform.platform(),
         "cpu": _cpu_name(),
