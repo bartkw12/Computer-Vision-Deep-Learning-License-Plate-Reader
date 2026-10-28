@@ -146,14 +146,13 @@ def validate(
         options.update(project=str(plots_dir.parent), name=plots_dir.name, exist_ok=True)
     metrics = model.val(**options)
 
-    validator = model.validator
     return {
         "weights": str(weights),
         "data": str(data),
         "split": split,
         "imgsz": imgsz,
-        "images": int(validator.seen),
-        "instances": int(sum(validator.metrics.nt_per_class)),
+        "images": len(metrics.nt_per_image),
+        "instances": int(sum(metrics.nt_per_class)),
         "precision": float(metrics.box.mp),
         "recall": float(metrics.box.mr),
         "mAP50": float(metrics.box.map50),
