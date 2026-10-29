@@ -3,6 +3,7 @@ import yaml
 
 from alpr.training import (
     config_differences,
+    count_split_images,
     load_train_args,
     read_results_csv,
     summarize_training_run,
@@ -115,3 +116,28 @@ def test_shipped_training_config_loads():
     args = load_train_args("configs/train_plate_detector.yaml", ["epochs=1"])
     assert args["epochs"] == 1
     assert args["model"] and args["data"]
+
+
+def test_count_split_images_matches_the_dataset_yaml(tmp_path):
+    for split, n in (("train", 3), ("valid", 2)):
+        folder = tmp_path / split / "images"
+        folder.mkdir(parents=True)
+        for i in range(n):
+            (folder / f"{i}.jpg").write_bytes(b"")
+        (folder / "notes.txt").write_text("not an image")
+    listed = tmp_path / "test.txt"
+    listed.write_text("train/images/0.jpg\nvalid/images/1.jpg\n\n")
+    data = tmp_path / "data.yaml"
+    data.write_text(
+        yaml.safe_dump(
+            {
+                "train": "train/images",
+                "val": "valid/images",
+                "test": "test.txt",
+                "names": {0: "plate"},
+            }
+        )
+    )
+    assert count_split_images(data, "train") == 3
+    assert count_split_images(data, "val") == 2
+    assert count_split_images(data, "test") == 2
