@@ -11,6 +11,7 @@ is produced by a command in the repository and stored in [`results/`](results/).
 
 <!-- results:headline -->
 - **Plate reading** on 444 labeled OpenALPR plates: `fast-plate-ocr:cct-s-v2-global-model` reads **90.5% (87-93)** exactly, against 28.4% (24-33) for the first version's EasyOCR + Otsu. 95% Wilson intervals in brackets.
+- **Plate detection** on the held-out test split (1019 images): mAP50 **0.983**, mAP50-95 0.698.
 <!-- /results:headline -->
 
 ## Contents
@@ -62,24 +63,24 @@ The [OpenALPR benchmark](https://github.com/openalpr/benchmarks) provides car ph
 
 | Reader | Preprocessing | Exact match (95% CI) | CER | BR | EU | US | ms / plate |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `easyocr` | `none` | 26.4% (22-31) | 0.265 | 57.9% | 10.2% | 18.0% | 40 |
-| `easyocr` | `gray` | 26.6% (23-31) | 0.265 | 58.8% | 9.3% | 18.5% | 40 |
-| `easyocr` | `otsu_inv` (v1) | 28.4% (24-33) | 0.284 | 72.8% | 10.2% | 14.4% | 40 |
-| `easyocr` | `clahe` | 24.8% (21-29) | 0.270 | 58.8% | 7.4% | 15.8% | 43 |
-| `easyocr` | `upscale` | 30.0% (26-34) | 0.240 | 59.6% | 21.3% | 18.9% | 46 |
-| `easyocr` | `upscale+clahe` | 25.0% (21-29) | 0.253 | 59.6% | 11.1% | 14.0% | 51 |
-| `easyocr-allowlist` | `none` | 23.2% (20-27) | 0.280 | 61.4% | 8.3% | 10.8% | 42 |
-| `easyocr-allowlist` | `gray` | 23.2% (20-27) | 0.280 | 63.2% | 4.6% | 11.7% | 40 |
-| `easyocr-allowlist` | `otsu_inv` | 24.8% (21-29) | 0.302 | 70.2% | 5.6% | 10.8% | 42 |
-| `easyocr-allowlist` | `clahe` | 22.5% (19-27) | 0.286 | 61.4% | 3.7% | 11.7% | 46 |
-| `easyocr-allowlist` | `upscale` | 25.9% (22-30) | 0.251 | 62.3% | 15.7% | 12.2% | 49 |
-| `easyocr-allowlist` | `upscale+clahe` | 23.4% (20-28) | 0.268 | 62.3% | 10.2% | 9.9% | 55 |
-| `easyocr-recognize` | `none` | 17.6% (14-21) | 0.316 | 45.6% | 3.7% | 9.9% | 10 |
-| `easyocr-recognize` | `upscale` | 17.6% (14-21) | 0.310 | 45.6% | 3.7% | 9.9% | 9 |
-| `easyocr-recognize-allowlist` | `none` | 14.0% (11-17) | 0.338 | 38.6% | 0.9% | 7.7% | 8 |
-| `easyocr-recognize-allowlist` | `upscale` | 13.3% (10-17) | 0.329 | 37.7% | 1.9% | 6.3% | 8 |
+| `easyocr` | `none` | 26.4% (22-31) | 0.265 | 57.9% | 10.2% | 18.0% | 38 |
+| `easyocr` | `gray` | 26.6% (23-31) | 0.265 | 58.8% | 9.3% | 18.5% | 39 |
+| `easyocr` | `otsu_inv` (v1) | 28.4% (24-33) | 0.284 | 72.8% | 10.2% | 14.4% | 39 |
+| `easyocr` | `clahe` | 24.8% (21-29) | 0.270 | 58.8% | 7.4% | 15.8% | 40 |
+| `easyocr` | `upscale` | 30.0% (26-34) | 0.240 | 59.6% | 21.3% | 18.9% | 44 |
+| `easyocr` | `upscale+clahe` | 25.0% (21-29) | 0.253 | 59.6% | 11.1% | 14.0% | 47 |
+| `easyocr-allowlist` | `none` | 23.2% (20-27) | 0.280 | 61.4% | 8.3% | 10.8% | 39 |
+| `easyocr-allowlist` | `gray` | 23.2% (20-27) | 0.280 | 63.2% | 4.6% | 11.7% | 38 |
+| `easyocr-allowlist` | `otsu_inv` | 24.8% (21-29) | 0.302 | 70.2% | 5.6% | 10.8% | 38 |
+| `easyocr-allowlist` | `clahe` | 22.5% (19-27) | 0.286 | 61.4% | 3.7% | 11.7% | 41 |
+| `easyocr-allowlist` | `upscale` | 25.9% (22-30) | 0.251 | 62.3% | 15.7% | 12.2% | 44 |
+| `easyocr-allowlist` | `upscale+clahe` | 23.4% (20-28) | 0.268 | 62.3% | 10.2% | 9.9% | 45 |
+| `easyocr-recognize` | `none` | 17.6% (14-21) | 0.316 | 45.6% | 3.7% | 9.9% | 8 |
+| `easyocr-recognize` | `upscale` | 17.6% (14-21) | 0.310 | 45.6% | 3.7% | 9.9% | 8 |
+| `easyocr-recognize-allowlist` | `none` | 14.0% (11-17) | 0.338 | 38.6% | 0.9% | 7.7% | 7 |
+| `easyocr-recognize-allowlist` | `upscale` | 13.3% (10-17) | 0.329 | 37.7% | 1.9% | 6.3% | 7 |
 | `fast-plate-ocr:cct-xs-v2-global-model` | `none` | 89.0% (86-92) | 0.020 | 93.9% | 92.6% | 84.7% | 2 |
-| `fast-plate-ocr:cct-s-v2-global-model` | `none` | **90.5% (87-93)** | 0.018 | 98.2% | 92.6% | 85.6% | 12 |
+| `fast-plate-ocr:cct-s-v2-global-model` | `none` | **90.5% (87-93)** | 0.018 | 98.2% | 92.6% | 85.6% | 11 |
 <!-- /results:ocr-stills -->
 
 ![Exact match of every OCR variant with 95% intervals](assets/ocr_variants.png)
@@ -111,8 +112,8 @@ Exact match on the 114 Brazilian plates, which all share the format `LLLDDDD`. I
 | --- | ---: | ---: | ---: |
 | no format: raw text | 57.9% (114/114) | 72.8% (112/114) | 98.2% (114/114) |
 | exact `LLLDDDD` match only | 57.9% (79/114) | 74.6% (97/114) | 98.2% (113/114) |
-| look-alike correction, ≤ 1 character | 63.2% (88/114) | 77.2% (101/114) | 98.2% (113/114) |
-| look-alike correction, ≤ 2 characters | 64.0% (89/114) | 77.2% (101/114) | 98.2% (113/114) |
+| look-alike correction, ≤ 1 character | 57.9% (80/114) | 74.6% (98/114) | 98.2% (113/114) |
+| look-alike correction, ≤ 2 characters | 57.9% (80/114) | 74.6% (98/114) | 98.2% (113/114) |
 <!-- /results:format-br -->
 
 ![Format-aware correction on the Brazilian plates](assets/format_correction_br.png)
@@ -180,13 +181,32 @@ Some of these misses are disputable labels rather than misreads: the image shows
 The original detector was trained for the first version of this project. Its training settings are recovered from the run's own files rather than retyped:
 
 <!-- results:training-original -->
-> _Pending: produced by `python scripts/recover_training_run.py --weights weights/plate_yolo11n_original.pt`._
+Recovered from the run's `args.yaml`, `results.csv` and checkpoint: 90 epochs, 2.8 h of training, Ultralytics 8.3.109, checkpoint saved 2025-04-16.
+
+| Argument | Value |
+| --- | --- |
+| `model` | `yolo11n.pt` |
+| `epochs` | `100` |
+| `batch` | `16` |
+| `imgsz` | `640` |
+| `optimizer` | `auto` |
+| `lr0` | `0.01` |
+| `momentum` | `0.937` |
+| `weight_decay` | `0.0005` |
+| `seed` | `0` |
+
+`configs/train_plate_detector.yaml` differs from the run in: `workers` (run `8`, config `4`)
 <!-- /results:training-original -->
 
 Measured with `alpr val` on the dataset's held-out **test** split, next to the validation split used to pick the checkpoint, for the original weights and for a retraining from [`configs/train_plate_detector.yaml`](configs/train_plate_detector.yaml):
 
 <!-- results:detector -->
-> _Pending: produced by `alpr val --weights weights/plate_yolo11n_original.pt --split test --out results/detector_original_test.json`._
+The validation split chose the best checkpoint during training, so its numbers are optimistic; the test split was never seen.
+
+| Weights, split | Images | Plates | Precision | Recall | mAP50 | mAP50-95 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| original, **test** | 1019 | 1048 | 0.993 | 0.969 | 0.983 | 0.698 |
+| original, val | 2046 | 2132 | 0.976 | 0.972 | 0.982 | 0.697 |
 <!-- /results:detector -->
 
 ![Precision-recall curve of the original detector on the test split](assets/detector_test_pr_curve.png)
@@ -202,7 +222,12 @@ Measured with `alpr val` on the dataset's held-out **test** split, next to the v
 Detector and reader together on the OpenALPR photos: plate-detection recall at IoU 0.5, then exact match on the detected crops.
 
 <!-- results:endtoend-stills -->
-> _Pending: produced by `alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n_original.pt --out results/endtoend_stills.json`._
+The detector finds **89.6%** of the 444 labeled plates at IoU ≥ 0.5 (BR 89.5%, EU 88.9%, US 90.1%); found plates overlap their label with a mean IoU of 0.69. Reading accuracy counts a missed plate as wrong, next to the same reader on the labeled boxes.
+
+| Reader | Labeled boxes | End to end (95% CI) | CER | BR | EU | US |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| `fast-plate-ocr:cct-xs-v2-global-model` | 89.0% (86-92) | 82.7% (79-86) | 0.115 | 86.8% | 84.3% | 79.7% |
+| `easyocr` | 26.4% (22-31) | 23.0% (19-27) | 0.366 | 55.3% | 7.4% | 14.0% |
 <!-- /results:endtoend-stills -->
 
 ### End to end on video
