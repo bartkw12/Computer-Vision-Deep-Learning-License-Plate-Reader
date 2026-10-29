@@ -6,7 +6,7 @@
     {
       "ocr": "easyocr",
       "preprocess": "none",
-      "ms_per_plate": 38.079024783836026,
+      "ms_per_plate": 37.51634029724612,
       "overall": {
         "n": 444,
         "exact": 117,
@@ -206,7 +206,7 @@
     {
       "ocr": "easyocr",
       "preprocess": "gray",
-      "ms_per_plate": 38.14788791891801,
+      "ms_per_plate": 39.244369518094466,
       "overall": {
         "n": 444,
         "exact": 118,
@@ -406,7 +406,7 @@
     {
       "ocr": "easyocr",
       "preprocess": "otsu_inv",
-      "ms_per_plate": 38.60067879511851,
+      "ms_per_plate": 39.0840614797878,
       "overall": {
         "n": 444,
         "exact": 126,
@@ -606,7 +606,7 @@
     {
       "ocr": "easyocr",
       "preprocess": "clahe",
-      "ms_per_plate": 40.23306231086993,
+      "ms_per_plate": 40.28629836480209,
       "overall": {
         "n": 444,
         "exact": 110,
@@ -806,7 +806,7 @@
     {
       "ocr": "easyocr",
       "preprocess": "upscale",
-      "ms_per_plate": 44.1090839888086,
+      "ms_per_plate": 44.151568034018005,
       "overall": {
         "n": 444,
         "exact": 133,
@@ -1006,7 +1006,7 @@
     {
       "ocr": "easyocr",
       "preprocess": "upscale+clahe",
-      "ms_per_plate": 47.47966149782744,
+      "ms_per_plate": 46.90807091216672,
       "overall": {
         "n": 444,
         "exact": 111,
@@ -1206,7 +1206,7 @@
     {
       "ocr": "easyocr-allowlist",
       "preprocess": "none",
-      "ms_per_plate": 38.144670389589045,
+      "ms_per_plate": 38.529865763455355,
       "overall": {
         "n": 444,
         "exact": 103,
@@ -1406,7 +1406,7 @@
     {
       "ocr": "easyocr-allowlist",
       "preprocess": "gray",
-      "ms_per_plate": 38.30707255396568,
+      "ms_per_plate": 38.22506382871612,
       "overall": {
         "n": 444,
         "exact": 103,
@@ -1606,7 +1606,7 @@
     {
       "ocr": "easyocr-allowlist",
       "preprocess": "otsu_inv",
-      "ms_per_plate": 44.91690600007296,
+      "ms_per_plate": 38.30931654276257,
       "overall": {
         "n": 444,
         "exact": 110,
@@ -1806,7 +1806,7 @@
     {
       "ocr": "easyocr-allowlist",
       "preprocess": "clahe",
-      "ms_per_plate": 42.61139176573501,
+      "ms_per_plate": 40.68990351805877,
       "overall": {
         "n": 444,
         "exact": 100,
@@ -2006,7 +2006,7 @@
     {
       "ocr": "easyocr-allowlist",
       "preprocess": "upscale",
-      "ms_per_plate": 43.93263576354445,
+      "ms_per_plate": 43.606071689167834,
       "overall": {
         "n": 444,
         "exact": 115,
@@ -2206,7 +2206,7 @@
     {
       "ocr": "easyocr-allowlist",
       "preprocess": "upscale+clahe",
-      "ms_per_plate": 45.900353671059165,
+      "ms_per_plate": 44.9483224256501,
       "overall": {
         "n": 444,
         "exact": 104,
@@ -2406,7 +2406,7 @@
     {
       "ocr": "easyocr-recognize",
       "preprocess": "none",
-      "ms_per_plate": 8.08406697310479,
+      "ms_per_plate": 8.175080011340896,
       "overall": {
         "n": 444,
         "exact": 78,
@@ -2606,7 +2606,7 @@
     {
       "ocr": "easyocr-recognize",
       "preprocess": "upscale",
-      "ms_per_plate": 8.09689477926047,
+      "ms_per_plate": 7.787500143987583,
       "overall": {
         "n": 444,
         "exact": 78,
@@ -2806,7 +2806,7 @@
     {
       "ocr": "easyocr-recognize-allowlist",
       "preprocess": "none",
-      "ms_per_plate": 7.422278871590525,
+      "ms_per_plate": 7.224195270192378,
       "overall": {
         "n": 444,
         "exact": 62,
@@ -3006,7 +3006,7 @@
     {
       "ocr": "easyocr-recognize-allowlist",
       "preprocess": "upscale",
-      "ms_per_plate": 7.342673286067103,
+      "ms_per_plate": 7.2582409460468424,
       "overall": {
         "n": 444,
         "exact": 59,
@@ -3206,7 +3206,7 @@
     {
       "ocr": "fast-plate-ocr:cct-xs-v2-global-model",
       "preprocess": "none",
-      "ms_per_plate": 1.705911542730236,
+      "ms_per_plate": 1.6172658670257078,
       "overall": {
         "n": 444,
         "exact": 395,
@@ -3406,7 +3406,7 @@
     {
       "ocr": "fast-plate-ocr:cct-s-v2-global-model",
       "preprocess": "none",
-      "ms_per_plate": 11.183771524859342,
+      "ms_per_plate": 10.880888828831155,
       "overall": {
         "n": 444,
         "exact": 402,
@@ -3605,9 +3605,9 @@
     }
   ],
   "environment": {
-    "timestamp_utc": "2026-10-28T02:40:58+00:00",
-    "git_commit": "8387d978e0351bf1f67efaeb2acc86d0df10c0a6",
-    "git_dirty": true,
+    "timestamp_utc": "2026-10-28T22:31:57+00:00",
+    "git_commit": "8b16269d4c8c7e91c8167070d3f20bca5bbd4d48",
+    "git_dirty": false,
     "python": "3.12.3",
     "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
     "cpu": "AMD Ryzen 7 6800HS with Radeon Graphics",

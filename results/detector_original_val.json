@@ -1,0 +1,38 @@
+{
+  "weights": "weights/plate_yolo11n_original.pt",
+  "data": "data/plates/data.yaml",
+  "split": "val",
+  "imgsz": 640,
+  "images": 1,
+  "instances": 2132,
+  "precision": 0.9760274968160091,
+  "recall": 0.9723264540337712,
+  "mAP50": 0.9822818844210099,
+  "mAP50-95": 0.697104584171007,
+  "speed_ms_per_image": {
+    "preprocess": 1.4944853616724707,
+    "inference": 29.27479460653316,
+    "loss": 5.506842481875965e-05,
+    "postprocess": 0.4168844032246568
+  },
+  "parameters": 2590035,
+  "plots_dir": "/home/bart/github/CV/Computer-Vision-Deep-Learning-License-Plate-Reader/outputs/detector_original_val",
+  "environment": {
+    "timestamp_utc": "2026-10-28T22:27:01+00:00",
+    "git_commit": "8b16269d4c8c7e91c8167070d3f20bca5bbd4d48",
+    "git_dirty": false,
+    "python": "3.12.3",
+    "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+    "cpu": "AMD Ryzen 7 6800HS with Radeon Graphics",
+    "packages": {
+      "alpr": "1.0.0",
+      "torch": "2.14.1",
+      "ultralytics": "8.4.175",
+      "easyocr": "1.7.2",
+      "fast-plate-ocr": "1.1.0",
+      "opencv-python": "5.0.0.93",
+      "numpy": "2.5.3"
+    },
+    "device": "cpu"
+  }
+}
