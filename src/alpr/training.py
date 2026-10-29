@@ -151,7 +151,7 @@ def validate(
         "data": str(data),
         "split": split,
         "imgsz": imgsz,
-        "images": len(metrics.nt_per_image),
+        "images": count_split_images(data, split),
         "instances": int(sum(metrics.nt_per_class)),
         "precision": float(metrics.box.mp),
         "recall": float(metrics.box.mr),
@@ -162,6 +162,26 @@ def validate(
         "plots_dir": str(metrics.save_dir),
         "environment": environment_info(device),
     }
+
+
+def count_split_images(data: str | Path, split: str) -> int:
+    """Count the images in one split of a YOLO dataset, as Ultralytics finds them.
+
+    Args:
+        data: Dataset YAML.
+        split: ``"train"``, ``"val"`` or ``"test"``.
+    """
+    from ultralytics.data.utils import IMG_FORMATS, check_det_dataset
+
+    sources = check_det_dataset(str(Path(data).resolve()))[split]
+    count = 0
+    for source in sources if isinstance(sources, list) else [sources]:
+        source = Path(source)
+        if source.is_dir():
+            count += sum(1 for p in source.rglob("*.*") if p.suffix[1:].lower() in IMG_FORMATS)
+        else:  # a text file listing one image per line
+            count += sum(1 for line in source.read_text().splitlines() if line.strip())
+    return count
 
 
 def read_results_csv(path: str | Path) -> list[dict[str, float]]:
