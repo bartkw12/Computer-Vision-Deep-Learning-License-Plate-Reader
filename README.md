@@ -117,7 +117,7 @@ Exact match on the 114 Brazilian plates, which all share the format `LLLDDDD`. I
 
 ![Format-aware correction on the Brazilian plates](assets/format_correction_br.png)
 
-On these held-out plates the measured corrections fix almost nothing. EasyOCR's commonest fixable mistake here is `O` read as `0` in a letter position, a correction that fell just short of the evidence bar on the US and EU plates, so it is not made; and many of its wrong reads have the wrong number of characters, which no per-character correction can repair. What the format check does do is turn wrong reads into no read: accuracy stays the same while fewer plates get an answer, which matters on video, where other frames of the same vehicle can still supply the plate. Whether that pays off is measured there (A3). fast-plate-ocr makes almost no look-alike mistakes, so there is nothing to correct.
+On these held-out plates the measured corrections fix almost nothing. EasyOCR's commonest fixable mistake here is `O` read as `0` in a letter position, a correction that fell just short of the evidence bar on the US and EU plates, so it is not made; and many of its wrong reads have the wrong number of characters, which no per-character correction can repair. What the format check does do is turn wrong reads into no read: accuracy stays about the same (it rises slightly where the serial is found inside longer text) while fewer plates get an answer, which matters on video, where other frames of the same vehicle can still supply the plate. Whether that pays off is measured there (A3). fast-plate-ocr makes almost no look-alike mistakes, so there is nothing to correct.
 
 ### Which look-alike corrections are real
 
@@ -188,6 +188,8 @@ Measured with `alpr val` on the dataset's held-out **test** split, next to the v
 <!-- results:detector -->
 > _Pending: produced by `alpr val --weights weights/plate_yolo11n_original.pt --split test --out results/detector_original_test.json`._
 <!-- /results:detector -->
+
+![Precision-recall curve of the original detector on the test split](assets/detector_test_pr_curve.png)
 
 **Train/test leakage check.** Datasets built from video often put near-identical frames in different splits, which inflates test scores. [`scripts/check_leakage.py`](scripts/check_leakage.py) compares every image with its nearest neighbour in the other splits:
 
