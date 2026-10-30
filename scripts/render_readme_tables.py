@@ -46,6 +46,9 @@ TRAINING = "detector_training_original.json"
 LEAKAGE = "dataset_leakage.json"
 #: ``alpr eval-images --plate-weights ...`` output, one file per reader.
 ENDTOEND_FILES = ("endtoend_stills.json", "endtoend_stills_easyocr.json")
+VIDEO = "video_eval.json"
+REPLAY = "ablation_video_replay.json"
+GRID = "ablation_video_grid.json"
 DETECTOR_FILES = {
     "detector_original_test.json": ("original", "test"),
     "detector_original_val.json": ("original", "val"),
@@ -360,6 +363,116 @@ def render_endtoend(files: Mapping[str, Results]) -> str:
     return text + _table(header, rows)
 
 
+def render_video(files: Mapping[str, Results]) -> str:
+    """Final plate per vehicle on the labeled video."""
+    report = files[VIDEO]
+    summary = report["summary"]
+    reading = summary["reading"]
+    video = report.get("video", {})
+    seconds = video.get("frames_processed", 0) / video["fps"] if video.get("fps") else None
+    duration = f"{seconds:.0f} s of " if seconds else ""
+    rows = [
+        ["Vehicles read exactly (95% CI)", f"**{_with_ci(reading)}**"],
+        ["Character error rate", f"{reading['cer']:.3f}"],
+        ["Precision of the plates it reported", _pct(summary["precision"])],
+        ["Labeled vehicles that were tracked", f"{summary['tracked']}/{summary['readable']}"],
+        ["Track IDs per vehicle (1.0 = never split)", f"{summary['tracks_per_vehicle']:.2f}"],
+        [
+            "Distinct plates read correctly",
+            f"{summary['unique_plates_read_correctly']}/{summary['unique_plates']}",
+        ],
+    ]
+    return (
+        f"{duration}Toronto street footage, {summary['readable']} vehicles with a plate readable "
+        f"by eye ({summary['unreadable']} more were not, and are left out). Settings: "
+        f"`{report['config']['ocr']['backend']}` OCR, `{report['config']['plate_format']['name']}` "
+        f"plate format, `{report['config']['aggregation']['strategy']}` aggregation.\n\n"
+        + _table(["Measure", "Value"], rows)
+    )
+
+
+_GRID_GROUPS = {
+    "baseline": "Defaults",
+    "tracker": "A6 Tracker lifetime",
+    "plate_search": "A5 Where to look for plates",
+    "ocr_backend": "A2 OCR backend",
+    "ocr_preprocess": "A1 Preprocessing",
+    "ocr_cost": "A7 Cost of OCR",
+}
+
+
+def render_video_ablations(files: Mapping[str, Results]) -> str:
+    """Format rules x aggregation (replayed) and one pipeline run per setting."""
+    parts = []
+    replay = files.get(REPLAY)
+    if replay:
+        strategies = list(dict.fromkeys(row["aggregation"] for row in replay["rows"]))
+        modes = list(dict.fromkeys(row["format_mode"] for row in replay["rows"]))
+        cell = {(r["format_mode"], r["aggregation"]): r for r in replay["rows"]}
+        rows = [
+            [
+                f"`{mode}`",
+                *(
+                    f"{_pct(cell[mode, s]['accuracy'])} ({_pct(cell[mode, s]['precision'])})"
+                    for s in strategies
+                ),
+            ]
+            for mode in modes
+        ]
+        parts.append(
+            "**A3 and A4**, replayed from one run's log: exact match per vehicle, and in "
+            "brackets the precision of the plates reported.\n\n"
+            + _table(["Format rule", *(f"`{s}`" for s in strategies)], rows)
+        )
+    grid = files.get(GRID)
+    if grid:
+        rows = [
+            [
+                _GRID_GROUPS.get(row["group"], row["group"]),
+                f"`{row['variant']}`",
+                _with_ci(row),
+                _pct(row["precision"]),
+                f"{row['tracks_per_vehicle']:.2f}",
+                str(row["ocr_calls"]),
+                f"{row['fps']:.1f}",
+            ]
+            for row in grid["rows"]
+        ]
+        header = ["Question", "Setting", "Exact match (95% CI)", "Precision", "Tracks/vehicle"]
+        header += ["OCR calls", "FPS"]
+        parts.append(
+            "**One full pipeline run per setting**, everything else at its default. "
+            f"FPS on {grid['environment'].get('device', 'cpu')} "
+            f"({grid['environment']['cpu']}).\n\n" + _table(header, rows, "ll" + "r" * 5)
+        )
+    return "\n\n".join(parts)
+
+
+def render_runtime(files: Mapping[str, Results]) -> str:
+    """Per-stage latency of the default pipeline and of the fastest OCR setting."""
+    grid = files[GRID]
+    rows_by_name = {(r["group"], r["variant"]): r for r in grid["rows"]}
+    runs = [("Defaults", rows_by_name.get(("baseline", "defaults")))]
+    runs.append(("fast-plate-ocr", rows_by_name.get(("ocr_backend", "fast-plate-ocr"))))
+    runs = [(label, row) for label, row in runs if row is not None]
+    stages = list(runs[0][1]["stage_ms_per_frame"])
+    rows = [
+        [
+            stage.replace("_", " "),
+            *(f"{row['stage_ms_per_frame'].get(stage, 0):.1f}" for _, row in runs),
+        ]
+        for stage in stages
+    ]
+    rows.append(["**total**", *(f"**{row['ms_per_frame']:.1f}**" for _, row in runs)])
+    rows.append(["frames per second", *(f"{row['fps']:.1f}" for _, row in runs)])
+    environment = grid["environment"]
+    return (
+        f"Milliseconds per video frame on {environment.get('device', 'cpu')} "
+        f"({environment.get('gpu') or environment['cpu']}), averaged over the labeled video.\n\n"
+        + _table(["Stage", *(label for label, _ in runs)], rows)
+    )
+
+
 # --- registry ---------------------------------------------------------------------
 
 
@@ -406,16 +519,16 @@ BLOCKS: dict[str, Block] = {
         render_endtoend,
     ),
     "video": Block(
-        ("video_eval.json",),
+        (VIDEO,),
         "alpr run VIDEO, alpr label-sheet, then alpr eval-video --out results/video_eval.json",
-        None,
+        render_video,
     ),
     "video-ablations": Block(
-        ("ablation_video_replay.json", "ablation_video_grid.json"),
+        (REPLAY, GRID),
         "python scripts/run_ablations.py video-replay / video-grid",
-        None,
+        render_video_ablations,
     ),
-    "runtime": Block(("runtime.json",), "alpr run VIDEO (its timing.json)", None),
+    "runtime": Block((GRID,), "python scripts/run_ablations.py video-grid", render_runtime),
 }
 
 
