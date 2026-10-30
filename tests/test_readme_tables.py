@@ -212,10 +212,73 @@ def test_endtoend_block_renders_one_row_per_reader(tmp_path):
     )
 
 
-def test_results_without_a_renderer_are_an_error(tmp_path):
-    (tmp_path / "video_eval.json").write_text("{}")
+def test_results_without_a_renderer_are_an_error(tmp_path, monkeypatch):
+    monkeypatch.setitem(render.BLOCKS, "future", render.Block(("future.json",), "make it", None))
+    assert render.render_block("future", tmp_path) == "> _Pending: produced by `make it`._"
+    (tmp_path / "future.json").write_text("{}")
     with pytest.raises(SystemExit, match="no renderer"):
-        render.render_block("video", tmp_path)
+        render.render_block("future", tmp_path)
+
+
+def test_video_block_renders_the_summary(tmp_path):
+    summary = {
+        "readable": 20, "unreadable": 3, "reading": score(0.6, 20), "precision": 0.8,
+        "tracked": 19, "tracks_per_vehicle": 1.25, "unique_plates": 18,
+        "unique_plates_read_correctly": 11,
+    }  # fmt: skip
+    config = {"ocr": {"backend": "easyocr"}, "plate_format": {"name": "ontario"},
+              "aggregation": {"strategy": "string_vote"}}  # fmt: skip
+    (tmp_path / render.VIDEO).write_text(
+        json.dumps(
+            {"summary": summary, "config": config, "video": {"fps": 60.0, "frames_processed": 2100}}
+        )
+    )
+    text = render.render_block("video", tmp_path)
+    assert text.startswith("35 s of Toronto street footage, 20 vehicles")
+    assert "(3 more were not, and are left out)" in text
+    assert "| Vehicles read exactly (95% CI) | **60.0% (30-80)** |" in text
+    assert "| Labeled vehicles that were tracked | 19/20 |" in text
+    assert "| Track IDs per vehicle (1.0 = never split) | 1.25 |" in text
+
+
+def grid_row(group, variant, accuracy, fps, stages):
+    return {
+        "group": group, "variant": variant, **score(accuracy, 20), "precision": 0.9,
+        "tracks_per_vehicle": 1.1, "ocr_calls": 500, "fps": fps,
+        "ms_per_frame": sum(stages.values()), "stage_ms_per_frame": stages,
+    }  # fmt: skip
+
+
+def test_video_ablation_and_runtime_blocks_render(tmp_path):
+    replay = {"rows": [
+        {"format_mode": mode, "aggregation": strategy, **score(acc, 20), "precision": 0.5}
+        for mode, acc in (("off", 0.4), ("lookalike-2", 0.6))
+        for strategy in ("max_conf", "string_vote")
+    ]}  # fmt: skip
+    (tmp_path / render.REPLAY).write_text(json.dumps(replay))
+    text = render.render_block("video-ablations", tmp_path)
+    assert "| Format rule | `max_conf` | `string_vote` |" in text
+    assert "| `lookalike-2` | 60.0% (50.0%) | 60.0% (50.0%) |" in text
+    assert "One full pipeline run" not in text
+
+    stages = {"vehicle_detection": 30.0, "ocr": 50.0}
+    grid = {
+        "rows": [
+            grid_row("baseline", "defaults", 0.5, 12.5, stages),
+            grid_row("ocr_backend", "fast-plate-ocr", 0.8, 25.0, {**stages, "ocr": 10.0}),
+        ],
+        "environment": {"cpu": "Test CPU", "device": "cpu"},
+    }
+    (tmp_path / render.GRID).write_text(json.dumps(grid))
+    text = render.render_block("video-ablations", tmp_path)
+    assert (
+        "| A2 OCR backend | `fast-plate-ocr` | 80.0% (40-90) | 90.0% | 1.10 | 500 | 25.0 |" in text
+    )
+
+    runtime = render.render_block("runtime", tmp_path)
+    assert "| Stage | Defaults | fast-plate-ocr |" in runtime
+    assert "| ocr | 50.0 | 10.0 |" in runtime
+    assert "| **total** | **80.0** | **40.0** |" in runtime
 
 
 def test_every_registered_block_is_in_the_readme():
