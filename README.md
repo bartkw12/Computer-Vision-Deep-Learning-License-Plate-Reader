@@ -255,7 +255,7 @@ Ontario traffic footage with hand-typed ground truth (`alpr label-sheet`, then `
 ### Runtime
 
 <!-- results:runtime -->
-> _Pending: produced by `alpr run VIDEO (its timing.json)`._
+> _Pending: produced by `python scripts/run_ablations.py video-grid`._
 <!-- /results:runtime -->
 
 ## Limitations
@@ -299,7 +299,7 @@ Every setting is documented in [`configs/pipeline.yaml`](configs/pipeline.yaml);
 | Retraining | `alpr train` | `weights/plate_yolo11n.pt` |
 | Leakage check | `python scripts/check_leakage.py` | `results/dataset_leakage.json` |
 | End to end, stills | `alpr eval-images --ocr fast-plate-ocr --plate-weights weights/plate_yolo11n_original.pt --out results/endtoend_stills.json`, and again with `--ocr easyocr` | `results/endtoend_stills*.json` |
-| End to end, video | `alpr run VIDEO` → `alpr label-sheet` → `alpr eval-video` | `results/video_eval.json` |
+| End to end, video | `python scripts/join_videos.py CLIPS --out data/videos/toronto_eval.mp4` → `alpr run` → `alpr label-sheet` → fill in plates → `alpr eval-video` | `results/video_eval.json` |
 | Video ablations (A3–A7) | `python scripts/run_ablations.py video-replay` / `video-grid` | `results/ablation_video_*.json` |
 | Figures and tables | `make figures readme` | `assets/`, this README |
 
